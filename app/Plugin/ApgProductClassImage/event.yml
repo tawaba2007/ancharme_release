@@ -1,0 +1,12 @@
+admin.product.product.class.index.classes:
+    - [onAdminProductClassIndexIndex, NORMAL]
+Admin/Product/product_class.twig:
+    - [onRenderAdminProductProductClass, NORMAL]
+admin.product.product.class.edit.complete:
+    - [onAdminProductClassEditComplete, NORMAL]
+admin.product.product.class.edit.update:
+    - [onAdminProductClassEditComplete, NORMAL]
+admin.product.product.class.edit.delete:
+    - [onAdminProductClassEditDelete, NORMAL]
+Product/detail.twig:
+    - [onRenderFrontProductDetail, NORMAL]

@@ -1,0 +1,17 @@
+<!-- 完了ページのHTMLに記述 -->
+<script>
+// Eコマースのライブラリを読み込み
+ga('require', 'ecommerce');
+
+<?php
+// サーバーサイドで記述したコードを読み込んで出力
+echo getTransactionJs($trans);
+// 複数商品に対応するためのループ処理
+foreach ($items as &$item) {
+  echo getItemJs($trans['id'], $item);
+}
+?>
+
+// Googleアナリティクスに送信
+ga('ecommerce:send');
+</script>

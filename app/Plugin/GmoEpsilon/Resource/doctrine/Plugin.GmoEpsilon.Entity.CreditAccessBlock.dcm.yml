@@ -1,0 +1,24 @@
+Plugin\GmoEpsilon\Entity\CreditAccessBlock:
+    type: entity
+    table: plg_epsilon_credit_access_block
+    repositoryClass: Plugin\GmoEpsilon\Repository\CreditAccessBlockRepository
+    indexes:
+        plg_epsilon_credit_access_block_ip_address_key:
+            columns:
+                - ip_address
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        ip_address:
+            type: string
+            nullable: false
+        block_date:
+            type: datetime
+            nullable: false
+    lifecycleCallbacks: {  }

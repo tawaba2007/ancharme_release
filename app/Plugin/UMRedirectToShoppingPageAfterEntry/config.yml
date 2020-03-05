@@ -1,0 +1,6 @@
+name: 会員登録後に注文画面へ移動するプラグイン(3.0系)
+code: UMRedirectToShoppingPageAfterEntry
+version: 1.0.0
+event: UMRedirectToShoppingPageAfterEntryEvent
+service:
+    - UMRedirectToShoppingPageAfterEntryServiceProvider

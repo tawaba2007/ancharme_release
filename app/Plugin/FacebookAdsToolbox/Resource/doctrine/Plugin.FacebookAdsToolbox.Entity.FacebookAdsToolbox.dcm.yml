@@ -1,0 +1,28 @@
+
+Plugin\FacebookAdsToolbox\Entity\FacebookAdsToolbox:
+    type: entity
+    table: plg_facebook_ads_toolbox
+    repositoryClass: Plugin\FacebookAdsToolbox\Repository\FacebookAdsToolboxRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: plg_facebook_ads_toolbox_id
+            generator:
+                strategy: NONE
+    fields:
+        fb_pixel:
+            type: text
+            nullable: false
+        merchant_settings:
+            type: text
+            nullable: false
+        create_date:
+            type: datetime
+            nullable: false
+        update_date:
+            type: datetime
+            nullable: false
+    lifecycleCallbacks: {  }

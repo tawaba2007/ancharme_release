@@ -1,0 +1,7 @@
+front.shopping.index.initialize:
+  - [setOrderIdToSession, NORMAL]
+
+# 購入完了時のメール送信のタイミング
+front.shopping.complete.initialize:
+  - [onSendOrderMailToNE, NORMAL]
+

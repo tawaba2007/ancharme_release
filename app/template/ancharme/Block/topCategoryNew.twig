@@ -1,0 +1,31 @@
+<div class="topCategory-wrapp new">
+  <div class="title-wrapp">
+    <h2 class="contents-title">
+      <img src="{{ app.config.front_urlpath }}/img/top/category_newin.jpg" alt="new in" class="contents-title-image">
+    </h2>
+  </div>
+  <div id="original-category" class="original-category-item-list-block">
+    <div class="item-list-wrapp">
+      {% for Product in Products %}
+      <div class="item-list-contents">
+        <div class="item-list-contents-image">
+          <a href="{{ url('product_detail', {'id': Product.id}) }}">
+            <img src="{{ app.config.image_save_urlpath }}/{{ Product.main_list_image|no_image_product }}">
+          </a>
+        </div>
+        <h3 class="item-list-contents-name">
+          <a class="item-list-contents-link" href="{{ url('product_detail', {'id': Product.id}) }}">
+            {{ Product.name }}
+          </a>
+        </h3>
+        <p class="price-text">{{ Product.getPrice02IncTaxMin|price }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <p class="viewMore">
+    <a href="https://7mm.jp/user_data/listNew">
+      <img src="{{ app.config.front_urlpath }}/img/common/more.png" alt="more">
+    </a>
+  </p>
+</div>

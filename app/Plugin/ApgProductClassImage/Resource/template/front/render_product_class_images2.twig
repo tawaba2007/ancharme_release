@@ -1,0 +1,13 @@
+{% if ProductClassImages is not empty %}
+    {% for ProductClassImage in ProductClassImages %}
+        <div id="detail_class_image_box__item--{{ loop.index }}">
+            {% if ProductClassImage.ProductClass.ClassCategory1 and ProductClassImage.ProductClass.ClassCategory2 %}
+                <img id="apg_product_class_image-{{ ProductClassImage.ProductClass.ClassCategory1.id }}-{{ ProductClassImage.ProductClass.ClassCategory2.id }}" class="apg_product_class_images selectable-class-image" src="{{ ProductClassImage.getImageUrl() }}" data-class_index="{{ loop.index }}"  data-class_category1="{{ ProductClassImage.ProductClass.ClassCategory1.id }}" data-class_category2="{{ ProductClassImage.ProductClass.ClassCategory2.id }}" >
+            {% elseif ProductClassImage.ProductClass.ClassCategory1 %}
+                <img id="apg_product_class_image-{{ ProductClassImage.ProductClass.ClassCategory1.id }}-" class="apg_product_class_images selectable-class-image" src="{{ ProductClassImage.getImageUrl() }}" data-class_index="{{ loop.index }}" data-class_category1="{{ ProductClassImage.ProductClass.ClassCategory1.id }}">
+            {% elseif ProductClassImage.ProductClass.ClassCategory2 %}
+                <img id="apg_product_class_image--{{ ProductClassImage.ProductClass.ClassCategory2.id }}" class="apg_product_class_images selectable-class-image" src="{{ ProductClassImage.getImageUrl() }}" data-class_index="{{ loop.index }}" data-class_category2="{{ ProductClassImage.ProductClass.ClassCategory2.id }}">
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endif %}

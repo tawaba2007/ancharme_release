@@ -1,0 +1,181 @@
+{#
+/*
+  * This file is part of the CssEditor plugin
+  *
+  * Copyright (C) >=2017 lecast system.
+  * @author Tetsuji Shiro 
+  *
+  * このプラグインは再販売禁止です。
+  */
+#}
+{% extends 'default_frame.twig' %}
+
+{% set menus = ['content', 'admin_CssEditor'] %}
+
+{% block title %}CSS管理{% endblock %}
+{% block sub_title %}{{ view_file }}編集{% endblock %}
+
+{% form_theme form 'Form/bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block stylesheet %}
+    <style type="text/css">
+        #editor {
+            margin: 0;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .item_list .item_box .item_photo {
+            padding-left: 0px;
+        }
+        .sortable_list .icon_sortable {
+            top: auto;
+            position: relative;
+            margin: auto;
+            vertical-align: middle;
+        }
+        .table_list tr > th, .table_list tr > td {
+             border-left: none;
+        }
+        .ui-sortable-helper {
+            display: table;
+        }
+    </style>
+
+{% endblock stylesheet %}
+
+{% block javascript %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <script type="text/javascript">
+        /*
+         * ace editor
+         */
+        var editor = ace.edit("editor");
+            editor.getSession().setMode("ace/mode/css");
+        var textarea = $('#admin_CssEditor_css');
+        editor.getSession().setValue(textarea.val());
+        editor.getSession().on('change', function(){
+          textarea.val(editor.getSession().getValue());
+        });
+        
+        /*
+         * form
+         */
+        $(function () {
+            $('#chk_history').change(function() {
+                var hty = $(this).prop('checked');
+                var txt = $('#hty_text');
+                if(hty){
+                    txt.show();
+                }else{
+                    txt.val('');
+                    txt.hide();
+                }
+            })
+        })
+    </script>
+{% endblock javascript %}
+
+{% block main %}
+    <form role="form" name="content_page_form" id="content_page_form" method="post"
+          action="{{ url('admin_CssEditor_update') }}?f={{ view_file }}">
+            <div id="detail" class="col-md-12">
+                <div id="detail_box" class="box form-horizontal">
+                    <div id="detail_box__header" class="box-header">
+                        <ul>
+                            {% for file in files %}
+                                {% if file != view_file%}
+                                <li><a href="{{ url('admin_CssEditor') }}?f={{ file }}">{{ file }}</a></li>
+                                {% else %}
+                                <li><strong>{{ file }}</strong></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <!-- /.box-header -->
+                    
+                    <div id="detail_box__body" class="box-body">
+
+                        <div id="detail_box__tpl_data" class="form-group">
+                            <div class="col-sm-12">
+                                <div id="editor"></div>
+                                <textarea id="admin_CssEditor_css" name="admin_CssEditor[css]" required="required" placeholder="css" style="height:600px" class="form-control">{{css}}</textarea>
+                                <input type="hidden" name="admin_CssEditor[file_name]" value="{{view_file}}" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="common_button_box" class="box no-header">
+                        <div id="common_button_box__body" class="box-body">
+                            <div id="common_button_box__insert_button" class="row text-center">
+                                <div class="col-sm-6 col-sm-offset-3 col-md-12 col-md-offset-0">
+                                    <button class="btn btn-primary btn-lg" type="submit">ファイルを更新</button>
+                                    <label>
+                                        <input type="checkbox" name="admin_CssEditor[is_history]" id="chk_history" />
+                                        履歴を残す
+                                    </label>
+                                    <div style="display:inline-block;width:200px;position:absolute;top:10px;">
+                                    <input type="text" name="admin_CssEditor[text]" id="hty_text" style="display:none;" placeholder="履歴のタイトル" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                    {% if pagination %}
+                    <div class="box-body table-responsive with-border">
+                        <p>履歴</p>
+                    <table class="table table-striped table_list" >
+                        <thead>
+                        <tr>
+                            <th>タイトル</th><th>保存日</th><th>ファイル名</th><th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for hty in pagination%}
+                        <tr>
+                            <td>{{ hty.text }}</td><td>{{ hty.created|date('Y-m-d H:i:s') }}</td><td>{{ hty.file_name }}</td>
+                            <td>
+                                <div class="icon_edit td">
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle" data-toggle="dropdown"><svg class="cb cb-ellipsis-h"> <use xlink:href="#cb-ellipsis-h" /></svg></a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li>
+                                                    <a href="{{ url('admin_CssEditor') }}?h={{hty.id}}&f={{hty.file_name}}">履歴を反映</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ url('admin_CssEditor_delete', {'id':hty.id}) }}" token-for-anchor data-method="delete" data-message="このページを削除してもよろしいですか？">削除</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <!-- /.col -->
+    </form>
+<div class="col-md-12" style="background:#fff;border-radius: 6px">
+    <table class="table table_list with-border" >
+        <tr><th>注意</th></tr>
+        <tr><td>・設定中のテンプレートディレクトリに保存されているCSSを読み込んでいます。<br>
+            {{dir}}</td></tr>
+        <tr><td>・以下のディレクトリの書き込み権限がない場合、履歴を保存できません。<br>
+            {{app.config.plugin_temp_realdir}}</td></tr>
+        <tr><td>・ファイルを更新してもサイトに反映されない場合、ブラウザのキャッシュを削除してください。</td></tr>
+    </table>
+    <div class="box-header with-arrow" >
+        <p><small>お問い合わせ:<a href="mailto:lecast.shiro@gmail.com">lecast.shiro@gmail.com</a></small></p>
+    </div>
+</div>
+{% endblock %}

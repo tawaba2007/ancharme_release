@@ -1,0 +1,147 @@
+{#
+  UaGaEEc: Google Analytics eコマース/拡張eコマース対応プラグイン
+  Copyright (C) 2016-2017 Freischtide Inc. All Rights Reserved.
+  http://freischtide.tumblr.com/
+
+  License: see LICENSE.txt
+  #}
+{% if uagaeec.tid|length > 0 %}
+<script type="text/javascript">
+  if (typeof ga == 'undefined') {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  }
+  ga('create', '{{ uagaeec.tid }}', {
+    {% if uagaeec.crossdomain_linker|length > 0 %}
+      'allowLinker': true,
+    {% endif %}
+    {% if uagaeec.uid|length > 0 %}
+      'userId': '{{ uagaeec.uid }}',
+    {% endif %}
+    'name': 'plg_uagaeec',
+    'cookieDomain': 'auto'
+  });
+  {% if uagaeec.crossdomain_linker|length > 0 %}
+    ga('plg_uagaeec.require', 'linker');
+    ga('plg_uagaeec.linker:autoLink', [{{ uagaeec.crossdomain_linker|raw }}]);
+  {% endif %}
+  {% if uagaeec.display_features == config.const.UAGAEEC_OP_WITH_DISPLAY_FEATURES %}
+    ga('plg_uagaeec.require', 'displayfeatures');
+  {% endif %}
+  {% if uagaeec.eec == config.const.UAGAEEC_USE_EEC %}
+    ga('plg_uagaeec.require', 'ec');
+
+{# PROMO 処理:START #}
+    {% if uagaeec.promo %}
+      ga('plg_uagaeec.ec:addPromo', {
+        'id': '{{ uagaeec.promo.id }}',
+        'name': '{{ uagaeec.promo.name }}'
+        {% if uagaeec.promo.creative|length > 0 %}
+        , 'creative': '{{ uagaeec.promo.creative }}'
+        {% endif %}
+        {% if uagaeec.promo.position|length > 0 %}
+        , 'position': '{{ uagaeec.promo.position }}'
+        {% endif %}
+      });
+      ga('plg_uagaeec.ec:setAction', 'promo_click');
+      ga('plg_uagaeec.send', 'event', 'Internal Promotions', 'click', '{{ uagaeec.promo.name }}');
+{# PROMO 処理:END #}
+
+{# CLICK 処理:START #}
+    {% elseif uagaeec.click %}
+      {% if products is defined %}
+        {% for product in products %}
+          ga('plg_uagaeec.ec:addProduct', {
+            {% if product.category|length > 0 %}
+            'category': '{{ product.category }}',
+            {% endif %}
+            'price': '{{ product.price }}',
+            {% if product.quantity > 0 %}
+            'quantity': {{ product.quantity }},
+            {% endif %}
+            'id': '{{ product.id }}',
+            'name': '{{ product.name }}'
+          });
+        {% endfor %}
+      {% endif %}
+      ga('plg_uagaeec.ec:setAction', 'click', {{ '{' }}{{ uagaeec.click|raw }}{{ '}' }});
+      ga('plg_uagaeec.send', 'event', 'Product clicks', 'click'{% if products is defined %}, 'id{{ products[0].id }} - {{ products[0].name }}'{% endif %});
+    {% endif %}
+{# CLICK 処理:END #}
+
+{# IMPRESSION 処理:START #}
+    {% if impressions is defined %}
+      {% for impression in impressions %}
+        ga('plg_uagaeec.ec:addImpression', {
+          'id': '{{ impression.id }}',
+          'name': '{{ impression.name }}',
+          'list': '{{ impression.list }}',
+          {% if impression.category|length > 0 %}
+          'category': '{{ impression.category }}',
+          {% endif %}
+          'price': '{{ impression.price }}',
+          'position': {{ loop.index }}
+        });
+      {% endfor %}
+    {% endif %}
+{# IMPRESSION 処理:END #}
+
+{# PRODUCT 処理:START #}
+    {% if products is defined %}
+      {% for product in products %}
+        ga('plg_uagaeec.ec:addProduct', {
+          'id': '{{ product.id }}',
+          'name': '{{ product.name }}',
+          {% if product.category|length > 0 %}
+          'category': '{{ product.category }}',
+          {% endif %}
+          'price': '{{ product.price }}',
+          {% if product.quantity > 0 %}
+          'quantity': {{ product.quantity }},
+          {% endif %}
+          'position': {{ loop.index }}
+        });
+      {% endfor %}
+    {% endif %}
+{# PRODUCT 処理:END #}
+
+{# ACTION 処理:START #}
+    {% if action is defined %}
+      ga('plg_uagaeec.ec:setAction', '{{ action.action }}'{% if action.option|length > 0 %}, {{ '{' }}{{ action.option|raw }}{{ '}' }}{% endif %});
+    {% endif %}
+{# ACTION 処理:START #}
+
+  {% elseif uagaeec.eec == config.const.UAGAEEC_USE_EC %}
+    {% if transaction is defined %}
+      ga('plg_uagaeec.require', 'ecommerce');
+      ga('plg_uagaeec.ecommerce:addTransaction', {
+        'id': {{ transaction.id|raw }},
+        'revenue': {{ transaction.revenue|raw }},
+        'tax': {{ transaction.tax|raw }},
+        'shipping': {{ transaction.shipping|raw }}
+      });
+      {% for product in products %}
+        ga('plg_uagaeec.ecommerce:addItem', {
+          'id': {{ transaction.id|raw }},
+          'name': '{{ product.name }}',
+          'sku': '{{ product.id }}',
+          'category': '{{ product.category }}',
+          'price': '{{ product.price }}',
+          'quantity': {{ product.quantity }}
+        });
+      {% endfor %}
+    ga('plg_uagaeec.ecommerce:send');
+    {% endif %}
+  {% endif %}
+
+  ga('plg_uagaeec.send', 'pageview');
+  {% if uagaeec.user_timings == config.const.UAGAEEC_OP_WITH_USER_TIMINGS %}
+    if (window.performance) {
+      var timeSincePageLoad = Math.round(performance.now());
+      ga('plg_uagaeec.send', 'timing', 'EC-CUBE UaGaEEc Plugin', 'load', timeSincePageLoad);
+    }
+  {% endif %}
+</script>
+{% endif %}

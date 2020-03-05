@@ -1,0 +1,26 @@
+Plugin\CssEditor\Entity\CssEditor:
+    type: entity
+    table: plg_css_history
+    repositoryClass: Plugin\CssEditor\Repository\CssEditorRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: history_id
+            generator:
+                strategy: AUTO
+            options:
+                unsigned: true
+            id: true
+    fields:
+        created:
+            type: datetime
+            nullable: false
+        text:
+            type: text
+            nullable: true
+        file_name:
+            type: text
+            nullable: false
+    lifecycleCallbacks: {  }

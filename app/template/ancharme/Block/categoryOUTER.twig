@@ -1,0 +1,19 @@
+<div id="original-category" class="original-category-item-list-block">
+  <div class="item-list-wrapp">
+    {% for Product in Products %}
+    <div class="item-list-contents">
+      <div class="item-list-contents-image">
+        <a href="{{ url('product_detail', {'id': Product.id}) }}">
+          <img src="{{ app.config.image_save_urlpath }}/{{ Product.main_list_image|no_image_product }}">
+        </a>
+      </div>
+      <h3 class="item-list-contents-name">
+        <a href="{{ url('product_detail', {'id': Product.id}) }}">
+          {{ Product.name }}
+        </a>
+      </h3>
+      <p class="price-text">{{ Product.getPrice02IncTaxMin|price }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>

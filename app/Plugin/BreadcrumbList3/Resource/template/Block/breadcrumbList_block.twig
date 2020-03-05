@@ -1,0 +1,64 @@
+<!--{
+This file is part of the BreadcrumbList3-plugin package.
+
+(c) Nobuhiko Kimoto All Rights Reserved.
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+}-->
+
+<style type="text/css">
+.breadcrumb {
+  padding: 8px 15px;
+  margin-bottom: 24px;
+  list-style: none;
+  background-color: #f5f5f5;
+  border-radius: 2px;
+}
+.breadcrumb > li {
+  display: inline-block;
+}
+.breadcrumb > li + li:before {
+  padding: 0 5px;
+  color: #ccc;
+  content: "/ ";
+}
+.breadcrumb > .active {
+  color: #777;
+}
+</style>
+
+{% if PageLayout != '' %}
+    {% for Breadcrumb in BreadcrumbList %}
+    <ol class="breadcrumb">
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+            <a href="{{ url('homepage') }}" itemprop="url">
+                <span itemprop="title">Home</span>
+            </a>
+        </li>
+        {% for i in Breadcrumb %}
+        {% if i %}
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+            <a href="{{ url(i.url) }}{% if i.q is not null %}{{i.q}}{% endif %}" itemprop="url">
+                <span itemprop="title">{{i.category_name}}</span>
+            </a>
+        </li>
+        {% endif %}
+        {% endfor %}
+
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+            <span itemprop="title">
+                {% if PageLayout.url == 'entry' %}
+                新規会員登録
+                {% elseif PageLayout.url == 'contact' %}
+                お問い合わせ
+                {% elseif PageLayout.url == 'cart' %}
+                ショッピングカート
+                {% else %}
+                {{ PageLayout.name }}
+                {% endif %}
+            </span>
+        </li>
+    </ol>
+    {% endfor %}
+{% endif %}

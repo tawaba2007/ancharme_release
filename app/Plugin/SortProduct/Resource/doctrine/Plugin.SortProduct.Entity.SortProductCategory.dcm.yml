@@ -1,0 +1,34 @@
+
+
+Plugin\SortProduct\Entity\SortProductCategory:
+    type: entity
+    table: plg_sort_product_category
+    repositoryClass: Plugin\SortProduct\Repository\SortProductCategoryRepository
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: id
+            generator:
+                strategy: AUTO
+    fields:
+        category_id:
+            type: integer
+            nullable: true
+#        product_id:
+#            type: integer
+#            nullable: false
+        rank:
+            type: integer
+            nullable: true
+    manyToOne:
+        Product:
+            targetEntity: Eccube\Entity\Product
+            joinColumn:
+                name: product_id
+                referencedColumnName: product_id
+    lifecycleCallbacks: {  }
+

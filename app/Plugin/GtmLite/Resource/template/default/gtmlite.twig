@@ -1,0 +1,22 @@
+{#
+  GtmLite: Google Tag Manager コンテナタグ設置プラグイン
+  Copyright (C) 2017 Freischtide Inc. All Rights Reserved.
+  http://freischtide.tumblr.com/
+
+  License: see LICENSE.txt
+  #}
+{% if gtmlite.tid|length > 0 %}
+{% if gtmlite.tag == config.const.GTMLITE_USE_GTM_TAG %}
+<!-- Google Tag Manager (noscript) by GtmLite plugin -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ gtmlite.tid }}"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+{% endif %}
+
+{% if event is defined %}
+<script>
+  var dataLayer = window.dataLayer || [];
+  dataLayer.push({'event': '{{ event }}'});
+</script>
+{% endif %}
+{% endif %}

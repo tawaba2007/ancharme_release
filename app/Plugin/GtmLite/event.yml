@@ -1,0 +1,38 @@
+eccube.event.front.request:
+  - [initGtmLite, NORMAL]
+
+Product/list.twig:
+  - [setTwigParametersGtmLite, NORMAL]
+Mypage/favorite.twig:
+  - [setTwigParametersGtmLite, NORMAL]
+Product/detail.twig:
+  - [setTwigParametersGtmLite, NORMAL]
+Cart/index.twig:
+  - [setTwigParametersGtmLite, NORMAL]
+Shopping/login.twig:
+  - [setTwigParametersGtmLite, NORMAL]
+Shopping/nonmember.twig:
+  - [setTwigParametersGtmLite, NORMAL]
+Shopping/index.twig:
+  - [setTwigParametersGtmLite, NORMAL]
+Shopping/complete.twig:
+  - [setTwigParametersGtmLite, NORMAL]
+
+eccube.event.front.response:
+  - [responseGtmLite, NORMAL]
+eccube.event.render.product_detail.before:
+  - [productDetailGtmLite, NORMAL]
+eccube.event.render.product_list.before:
+  - [productListGtmLite, NORMAL]
+eccube.event.render.mypage_favorite.before:
+  - [mypageFavoriteGtmLite, NORMAL]
+eccube.event.render.cart.before:
+  - [cartGtmLite, NORMAL]
+eccube.event.render.shopping_login.before:
+  - [shoppingLoginGtmLite, NORMAL]
+eccube.event.render.shopping_nonmember.before:
+  - [shoppingNonmemberGtmLite, NORMAL]
+eccube.event.render.shopping.before:
+  - [shoppingGtmLite, NORMAL]
+eccube.event.render.shopping_complete.before:
+  - [shoppingCompleteGtmLite, NORMAL]

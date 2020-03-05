@@ -1,0 +1,299 @@
+
+{% extends 'default_frame.twig' %}
+
+{% set menus = ['product', 'sort_product'] %}
+
+{% block title %}商品管理{% endblock %}
+{% block sub_title %}商品並び替え カテゴリー別{% endblock %}
+
+{% block stylesheet %}
+
+{% endblock stylesheet %}
+
+{% block javascript %}
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+
+    <script src="{{ app.config.admin_urlpath }}/assets/js/vendor/jquery.ui/jquery.ui.core.min.js"></script>
+    <script src="{{ app.config.admin_urlpath }}/assets/js/vendor/jquery.ui/jquery.ui.widget.min.js"></script>
+    <script src="{{ app.config.admin_urlpath }}/assets/js/vendor/jquery.ui/jquery.ui.mouse.min.js"></script>
+    <script src="{{ app.config.admin_urlpath }}/assets/js/vendor/jquery.ui/jquery.ui.sortable.min.js"></script>
+
+
+<script>
+
+
+    {# 古い並び替えの配列を作成 #}
+    var old_rank= new Array();
+    {% set i = 0 + page_count * (page_no - 1) %}
+    {% for SortProductCategory in pagination %}
+    {#old_rank[{{ loop.index0 }}] = {{ SortProductCategory.rank }};#}
+    old_rank[{{ i }}] = {{ SortProductCategory.rank }};
+    {% set i = i + 1 %}
+    {% endfor %}
+
+    {# ドラッグ＆ドロップ時の対象rank保管 #}
+    var fromRank = null;
+
+    var hashNoToRank = new Array();
+    {% for no, rank in hashNoToRank %}
+    hashNoToRank[{{ no }}] = {{ rank }};
+    {% endfor %}
+
+    $(function() {
+
+        // ドラッグ＆ドロップ部分
+        $("div.tableish").sortable({
+            items: '> .item_box',
+            cursor: 'move',
+            update: function(e, ui) {
+                $("body").append($('<div class="modal-backdrop in"></div>'));
+                updateRank();
+            }
+        });
+
+        var updateRank = function() {
+            // 並び替え後にrankを更新
+            var newRanks = {};
+            var i = 0 + {{ page_count * (page_no - 1) }};
+            $("div.tableish > .item_box").each(function() {
+                newRanks[this.dataset.productId] = old_rank[i];
+                i++;
+            });
+
+            $.ajax({
+                url: '{{ url('plg_SortProduct_product_rank_move_category') }}',
+                type: 'POST',
+                data: {'newRanks': newRanks, 'categoryId': {{ Category.id }} },
+                dataType: 'text'
+            }).done(function(data) {
+                $(".modal-backdrop").remove();
+            }).fail(function() {
+                $(".modal-backdrop").remove();
+            }).always(function() {
+                location.reload();
+            });
+        };
+
+        $("#update_btn").click(function(){
+            {% if Category.Id == null %}
+            location.href = "{{ path( this_page, { 'page_no': page_no} )}}";
+            {% else %}
+            location.href = "{{ path( this_page_by, { 'categoryId': Category.Id, 'page_no': page_no} )}}";
+            {% endif %}
+        });
+
+    });
+
+    function clickMoveRankButton(fromRank, selectBoxNo) {
+        var selector = "#select_box_"+selectBoxNo;
+        var toNo = parseInt($(selector).val());
+        var toRank = hashNoToRank[toNo];
+
+        if(toRank != fromRank) {
+            $('#{{ form.from_rank.vars.id }}').val(fromRank);
+            $('#{{ form.to_rank.vars.id }}').val(toRank);
+            $('#form1').submit();
+            return false;
+        } else {
+            return false;
+        }
+    }
+
+    var nowRanks= new Array();
+    nowRanks[0] = "top";
+    {% for rank,no in choices %}
+    nowRanks[{{ no }}] = {{ rank }};
+    {% endfor %}
+
+</script>
+
+
+{% endblock javascript %}
+
+{% block main %}
+
+    {% if Category.Id != null %}
+    <form id="form1" method="post" action="{{ url('plugin_SortProduct_byCategory', {'categoryId': Category.id}) }}">
+    {% else %}
+    <form id="form1" method="post" action="{{ url('plugin_SortProduct') }}">
+    {% endif %}
+        {{ form_widget(form._token) }}
+        {{ form_widget(form.from_rank) }}
+        {{ form_widget(form.to_rank) }}
+    </form>
+
+            <div class="row" id="aside_wrap">
+                <div id="detail_wrap" class="col-md-9">
+                    <div id="detail_box" class="box form-horizontal">
+                        <div id="detail_box__header" class="box-header">
+                            カテゴリー別 並び替え:&nbsp;&nbsp;{% if SortProductConfig == null or SortProductConfig.category_mode == 0 %}無効{% else %}<span style="color:blue;">有効</span>{% endif %}<br>
+                            {% if SortProductConfig == null or SortProductConfig.category_mode == 0 %}
+                                <small>
+                                    &nbsp;&nbsp;無効の場合、並び順序は商品カテゴリーに関係なく一意に管理されます。<br>
+                                    &nbsp;&nbsp;右のツリーでこの画面に表示する商品の絞り込みができます。
+                                </small>
+                            {% else %}
+                                <small>
+                                    &nbsp;&nbsp;有効の場合、並び順序は商品カテゴリーごとに管理されます。<br>
+                                    &nbsp;&nbsp;設定したいカテゴリーを右のツリーから選択してください。
+                                </small>
+                            {% endif %}
+                            <br><br>
+                            <small>
+                                &nbsp;&nbsp;<a href="{{ path('plugin_SortProduct_config') }}">無効/有効の変更はこちらへ</a>
+                            </small>
+                        </div><!-- /.box-header -->
+                    </div>
+
+                    <div id="detail_box" class="box form-horizontal">
+                        <div id="detail_box__header" class="box-header">
+                            選択中のカテゴリ:&nbsp;&nbsp;{{ Category.name }}
+                        </div>
+                    </div>
+
+                    <div id="detail_box" class="box form-horizontal">
+
+                        {% if pagination|length <= 0 %}
+                            <div id="detail_box__header" class="box-header">
+                                ※選択したカテゴリーの商品がありません。
+                            </div><!-- /.box-header -->
+
+                        {% else %}
+                            <div id="detail_box__header" class="box-header">
+                                {#<h4>選択中のカテゴリ: {{ Category.name }}</h4>#}
+                                {#選択中のカテゴリ: {{ Category.name }}<br><br>#}
+                                <small>並べ替えたい商品をドラッグ＆ドロップで移動させるか、移動先の番号をリストから選択して[移動]ボタンを押してください。</small>
+
+                                <!-- 表示件数指定 -->
+                                <ul class="sort-dd">
+                                <li id="result_list__pagemax_menu" class="dropdown">
+                                    <!-- 現在選択されている表示件数の表示 -->
+                                    {% for pageMax in pageMaxis if pageMax.name == page_count %}
+                                    <a class="dropdown-toggle" data-toggle="dropdown">表示：{{ pageMax.name|e }}件<svg class="cb cb-angle-down icon_down"><use xlink:href="#cb-angle-down"></svg></a>
+                                    <ul class="dropdown-menu">
+                                    {% endfor %}
+                                    <!-- 選択リストの表示。ただし、現在選択されている件数は表示しない -->
+                                    {% for pageMax in pageMaxis if pageMax.name != page_count %}
+                                    {% if Category != null %}
+                                    <li><a href="{{ path( 'plugin_SortProduct_byCategory', { 'categoryId': Category.Id, 'page_no': 1, 'page_count': pageMax.name}) }}">{{ pageMax.name|e }}件</a></li>
+                                    {% else %}
+                                    <li><a href="{{ path( 'plugin_SortProduct', { 'page_no': 1, 'page_count': pageMax.name}) }}">{{ pageMax.name|e }}件</a></li>
+                                    {% endif %}
+                                    {% endfor %}
+                                    </ul>
+                                </li>
+                                </ul>
+
+                            </div><!-- /.box-header -->
+
+
+                        <div id="sortable_list" class="box-body no-padding no-border">
+                            <div id="sortable_list_box" class="sortable_list">
+                                <div id="result_list__list" class="item_list">
+                                    <div class="tableish">
+
+                                        <!-- フロー表示 商品情報１行ずつ表示 ここから -->
+                                        {% for SortProductCategory in pagination %}
+                                            {% set Product = SortProductCategory.Product %}
+                                            <div id="sortable_list__item--{{ SortProductCategory.rank }}" class="item_box tr form-inline" data-product-id="{{ Product.id }}" data-sort-product-id="{{ SortProductCategory.rank }}" >
+
+                                                <!-- ドラッグ＆ドロップ可能マーク -->
+                                                <div class="icon_sortable td">
+                                                    <svg class="cb cb-ellipsis-v"> <use xlink:href="#cb-ellipsis-v" /></svg>
+                                                </div>
+
+                                                <!-- 商品並び替えツール ここから -->
+                                                <!-- 並び順番号 -->
+                                                {% set this_no = loop.index + page_count * (page_no - 1) %}
+                                                <div class="item_id td">
+                                                    {{ this_no }}
+                                                </div>
+                                                <!-- 並び順の指定セレクトボックス と 変更ボタン -->
+                                                <div class="item_pattern td">
+                                                    <select id="select_box_{{ this_no }}" class="form-inline  padT07 form-control">
+                                                        {% for rank,no in choices %}
+                                                            {% if no == this_no %}
+                                                                <option value="{{ no }}">{{ no }}</option>
+                                                            {% else %}
+                                                                <option value="{{ no }}">{{ no }}</option>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </select>
+                                                    <button type="button" id="changeRank" class="btn btn-primary btn-sm" onclick="clickMoveRankButton('{{ SortProductCategory.rank }}','{{ this_no }}')" >移動</button>
+
+
+                                                </div>
+
+                                                <!-- 商品並び替えツール ここまで -->
+
+
+                                                <!-- 商品画像 -->
+                                                <div id="result_list__image--{{ Product.id }}" class="item_photo td">
+                                                    <a href="{{ url('admin_product_product_edit', { id : Product.id }) }}">
+                                                        <img src="{{ app.config.image_save_urlpath }}/{{ Product.mainFileName|no_image_product }}" />
+                                                    </a>
+                                                </div>
+
+
+                                                <!-- 商品名 -->
+                                                <div id="sortable_list__item_body--{{ SortProductCategory.rank }}" class="item_detail td">
+                                                    [ID:{{ Product.id }}]
+                                                    {% if Product.Status.id == 1 %}
+                                                        [公開]
+                                                    {% else %}
+                                                        <span style="color:red;">[非公開]</span>
+                                                    {% endif %}
+                                                    &nbsp;{{ Product.name }}
+                                                    {#[表示順:{{ choices[SortProductCategory.rank] }}]#}
+                                                    {#[rank:{{ SortProductCategory.rank }}]#}
+                                                </div>
+
+                                            </div>
+
+
+                                        {% endfor %}
+                                        <!-- フロー表示 商品情報１行ずつ表示 ここまで -->
+
+                                        {% if pagination.totalItemCount > 0 %}
+
+                                            {% if Category != null %}
+                                                {% include "SortProduct/Resource/template/admin/pager_custom.twig" with { 'pages' : pagination.paginationData, 'routes' : 'plugin_SortProduct_byCategory' , 'categoryId' : Category.Id } %}
+                                            {% else %}
+                                                {% include "pager.twig" with { 'pages' : pagination.paginationData, 'routes' : 'plugin_SortProduct' } %}
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 商品リスト ここまで -->
+                        </div><!-- /.box-body -->
+                        <!-- 商品リスト ここまで -->
+                        {% endif %}
+                    </div><!-- /.box -->
+                </div><!-- /.col -->
+
+
+                <div id="common_box" class="col-md-3">
+                    <div class="col_inner" id="aside_column">
+                        <div id="common_button_box" class="box no-header">
+                            <div id="common_button_box__body" class="box-body">
+
+                                <div id="common_button_box__class_set_button" class="row">
+                                    <!-- カテゴリーツリー表示 ここから -->
+                                    {% if Category.Id == null %}
+                                        {{ render(path('plugin_SortProduct_block_category_tree', { categoryId : 0 })) }}
+                                    {% else %}
+                                        {{ render(path('plugin_SortProduct_block_category_tree', { categoryId : Category.Id })) }}
+                                    {% endif %}
+                                    <!-- カテゴリーツリー表示 ここまで -->
+                                </div>
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+                    </div><!-- /.box -->
+                </div><!-- /.col -->
+
+            </div>
+            {#</form>#}
+
+
+{% endblock %}

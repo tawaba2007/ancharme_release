@@ -1,0 +1,9 @@
+name: 商品規格画像アップロードプラグイン
+code: ApgProductClassImage
+version: 1.0.2
+service:
+    - ApgProductClassImageServiceProvider
+orm.path:
+    - /Resource/doctrine
+event: ApgProductClassImageEvent
+const:

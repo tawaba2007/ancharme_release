@@ -1,0 +1,5 @@
+name: '全ページ対応パンくずリスト表示プラグイン for EC-CUBE3'
+code: BreadcrumbList3
+version: 0.1.0
+service:
+    - BreadcrumbList3ServiceProvider

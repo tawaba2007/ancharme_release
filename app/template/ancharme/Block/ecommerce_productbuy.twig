@@ -1,0 +1,28 @@
+<?php
+// Transacion（取引）データの登録
+function getTransactionJs(&$trans) {
+  return <<<HTML
+ga('ecommerce:addTransaction', {
+  'id': '{$trans['id']}',
+  'affiliation': '{$trans['affiliation']}',
+  'revenue': '{$trans['revenue']}',
+  'shipping': '{$trans['shipping']}',
+  'tax': '{$trans['tax']}'
+});
+HTML;
+}
+
+// 商品データの登録
+function getItemJs(&$transId, &$item) {
+  return <<<HTML
+ga('ecommerce:addItem', {
+  'id': '$transId',
+  'name': '{$item['name']}',
+  'sku': '{$item['sku']}',
+  'category': '{$item['category']}',
+  'price': '{$item['price']}',
+  'quantity': '{$item['quantity']}'
+});
+HTML;
+}
+?>

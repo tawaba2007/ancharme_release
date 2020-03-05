@@ -1,0 +1,7 @@
+name: CSS編集プラグイン
+code: CssEditor
+version: 1.0.1
+service:
+    - CssEditorServiceProvider
+orm.path:
+    - /Resource/doctrine

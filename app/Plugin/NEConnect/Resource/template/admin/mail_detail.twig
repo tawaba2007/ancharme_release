@@ -1,0 +1,88 @@
+
+{% extends 'default_frame.twig' %}
+
+{% set menus = ['ne_connect', 'ne_connect_cfg'] %}
+
+{% block title %}ネクストエンジン接続プラグイン{% endblock %}
+{% block sub_title %}{% endblock %}
+
+{% form_theme form 'Form/bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block main %}
+
+    <div class="row" id="aside_wrap">
+        <form role="form" name="form1" id="form1" method="post" action="" novalidate enctype="multipart/form-data">
+            {{ form_widget(form._token) }}
+            <div id="detail_wrap" class="col-md-9">
+                {# 設定ボックス #}
+                <div id="detail_box" class="box form-horizontal">
+                    <div id="detail_box__header" class="box-header">
+                        <h3 class="box-title">メール詳細</h3>
+                    </div><!-- /.box-header -->
+                    <div id="detail_box__body" class="box-body">
+
+                        <div class="form-group">
+                            <label class="col-sm-4 col-lg-3 control-label">ID</label>
+                            <div class="col-sm-8 col-lg-9 padT07">
+                                {{ MailHistory.id }}
+                                {#<small style="color:black">ネクストエンジンの店舗設定で受注情報取込み用メールアドレスに表示されるメールアドレスを登録してください</small>#}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 col-lg-3 control-label">メールアドレス</label>
+                            <div class="col-sm-8 col-lg-9 padT07">
+                                {{ form_widget(form.send_to) }}
+                                {{ form_errors(form.send_to) }}
+                                <small style="color:black">ネクストエンジンの店舗設定で受注情報取込み用メールアドレスに表示されるメールアドレスを登録してください</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 col-lg-3 control-label">タイトル</label>
+                            <div class="col-sm-8 col-lg-9 padT07">
+                                {{ form_widget(form.subject) }}
+                                {{ form_errors(form.subject) }}
+                                <small style="color:black">タイトルの先頭に自動で[再送]を付けています。不要の場合は削除してください</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 col-lg-3 control-label">メール本文</label>
+                            <div class="col-sm-8 col-lg-9 padT07">
+                                {{ form_widget(form.mail_body) }}
+                                <small style="color:red">ネクストエンジンに取り込み済みデータと注文コードが重複しているデータは、ネクストエンジンに取り込まれません。重複しない値へ変更してください</small>
+                                <br><br>
+                                <a href="{{ path('plugin_NEConnect_config') }}">設定画面へ戻る</a>
+                            </div>
+                        </div>
+
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+
+            </div><!-- /.col -->
+
+            <div class="col-md-3" id="aside_column">
+                <div id="common_box" class="col_inner">
+                    <div id="common_button_box" class="box no-header">
+                        <div id="common_button_box__body" class="box-body">
+                            <div id="common_button_box__insert_button" class="row text-center">
+                                <div class="col-sm-6 col-sm-offset-3 col-md-12 col-md-offset-0">
+                                    <button type="submit" class="btn btn-primary btn-block btn-lg prevention-btn prevention-mask" >再送</button>
+                                </div>
+                            </div>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+
+                    {#{% if MailHistory != null %}#}
+                        {#<div id="common_date_info_box" class="box no-header">#}
+                            {#<div id="common_date_info_box__body" class="box-body update-area">#}
+                                {#<p><svg class="cb cb-clock"> <use xlink:href="#cb-clock" /></svg>登録日：{{ MailHistory.create_date|date_format }}</p>#}
+                                {#<p><svg class="cb cb-clock"> <use xlink:href="#cb-clock" /></svg>更新日：{{ MailHistory.update_date|date_format }}</p>#}
+                            {#</div>#}
+                        {#</div><!-- /.box -->#}
+                    {#{% endif %}#}
+
+                </div>
+            </div><!-- /.col -->
+
+        </form>
+    </div>
+{% endblock %}

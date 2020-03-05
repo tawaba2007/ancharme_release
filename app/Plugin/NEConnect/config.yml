@@ -1,0 +1,8 @@
+name: ネクストエンジン接続プラグイン
+code: NEConnect
+version: 1.0.6
+event: Event
+service:
+    - NEConnectServiceProvider
+orm.path:
+    - /Resource/doctrine

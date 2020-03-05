@@ -1,0 +1,14 @@
+name: Google Tag Manager コンテナタグ設置プラグイン
+code: GtmLite
+version: 1.0.0
+service:
+  - GtmLiteServiceProvider
+orm.path:
+  - /Resource/doctrine
+event: Event
+const:
+  GTMLITE_USE_GTM_TAG: 1
+  GTMLITE_USE_NO_GTM_TAG: 2
+
+  GTMLITE_OP_OPTIONAL_EVENTS_ON: 1
+  GTMLITE_OP_OPTIONAL_EVENTS_OFF: 2

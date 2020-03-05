@@ -1,0 +1,22 @@
+Plugin\OrderNumber\Entity\OrderNumberFormat:
+    type: entity
+    table: plg_order_number_format
+    repositoryClass: Plugin\OrderNumber\Repository\OrderNumberFormatRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: order_number_format_id
+    fields:
+        front_format_type:
+            type: integer
+            nullable: true
+        rear_format_type:
+            type: integer
+            nullable: true
+        digit:
+            type: integer
+            nullable: true
+    lifecycleCallbacks: {  }

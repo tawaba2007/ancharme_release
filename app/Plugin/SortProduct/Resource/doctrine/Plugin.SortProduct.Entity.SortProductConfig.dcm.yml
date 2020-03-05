@@ -1,0 +1,46 @@
+
+
+Plugin\SortProduct\Entity\SortProductConfig:
+    type: entity
+    table: plg_sort_product_config
+    repositoryClass: Plugin\SortProduct\Repository\SortProductConfigRepository
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: id
+            generator:
+                strategy: AUTO
+
+    fields:
+        category_mode:
+            type: smallint
+            nullable: false
+            unsigned: false
+            options:
+                default: '0'
+        create_date:
+            type: datetime
+            nullable: false
+        update_date:
+            type: datetime
+            nullable: false
+        del_flg:
+            type: smallint
+            nullable: false
+            unsigned: false
+            options:
+                default: '0'
+
+    manyToOne:
+        Creator:
+            targetEntity: Eccube\Entity\Member
+            joinColumn:
+                name: creator_id
+                referencedColumnName: member_id
+                nullable: false
+
+    lifecycleCallbacks: {  }

@@ -1,0 +1,40 @@
+Plugin\NEConnect\Entity\NEConnectConfig:
+    type: entity
+    table: plg_ne_connect_config
+    repositoryClass: Plugin\NEConnect\Repository\NEConnectConfigRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: config_id
+            generator:
+                strategy: AUTO
+    fields:
+        email_address:
+            type: text
+            nullable: true
+            length: 65535
+        api_key:
+            type: text
+            nullable: true
+            length: 65535
+        create_date:
+            type: datetime
+            nullable: false
+        update_date:
+            type: datetime
+            nullable: false
+        creator_id:
+            type: integer
+            nullable: true
+            unsigned: false
+        del_flg:
+            type: smallint
+            nullable: false
+            unsigned: false
+            options:
+                default: '0'
+
+    lifecycleCallbacks: {  }

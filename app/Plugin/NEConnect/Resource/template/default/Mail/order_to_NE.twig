@@ -1,0 +1,49 @@
+注文コード：{{ Order.id }}
+注文日時：{{ createDate }}
+■注文者の情報
+氏名：{{ Order.name01 }} {{ Order.name02 }}
+氏名（フリガナ）：{{ Order.kana01 }} {{ Order.kana02 }}
+郵便番号：{{ Order.zip01 }}-{{ Order.zip02 }}
+住所：{{ Order.Pref.name }}{{ Order.addr01 }}{{ Order.addr02 }}
+電話番号：{{ Order.tel01 }}{{ Order.tel02 }}{{ Order.tel03 }}
+Ｅメールアドレス：{{ Order.email }}
+■支払方法
+支払方法：{{ Order.payment_method }}
+■注文内容
+{% for OrderDetail in Order.OrderDetails %}------------------------------------------------------------
+    商品番号：{{ OrderDetail.product_code }}
+    注文商品名：{{ OrderDetail.product_name }}
+    商品オプション：{% if OrderDetail.classcategory_name1 %}{{ OrderDetail.classcategory_name1 }}/{{ OrderDetail.classcategory_name2 }}{% endif %}
+    単価：￥{{ calc_inc_tax(OrderDetail.price, OrderDetail.tax_rate, OrderDetail.tax_rule)|number_format }}
+    数量：{{ OrderDetail.quantity|number_format }}
+    小計：￥{{ (calc_inc_tax(OrderDetail.price, OrderDetail.tax_rate, OrderDetail.tax_rule) * OrderDetail.quantity)|number_format }}
+{% endfor %}
+------------------------------------------------------------
+商品合計：￥{{ (Order.subtotal - Order.tax)|number_format }}
+税金：￥{{ Order.tax|number_format }}
+送料：￥{{ Order.delivery_fee_total|number_format}}
+手数料：￥{{ Order.charge|number_format }}
+その他費用：￥{{ (0 - Order.discount)|number_format}}
+{% if lastPreUsePoint != null %}
+ポイント利用額：▲￥{{ lastPreUsePointTotal }}({{ lastPreUsePoint }}ポイント)
+{% else %}
+ポイント利用額：▲￥0(0ポイント)
+{% endif %}
+------------------------------------------------------------
+合計金額(税込)：￥{{ Order.payment_total|number_format }}
+------------------------------------------------------------
+■届け先の情報
+{%  for Shipping in Order.Shippings %}[送付先{{ loop.index }}]
+    　送付先{{ loop.index }}氏名：{{ Shipping.name01 }} {{ Shipping.name02 }}
+    　送付先{{ loop.index }}氏名（フリガナ）：{{ Shipping.kana01 }} {{ Shipping.kana02 }}
+    　送付先{{ loop.index }}郵便番号：{{ Shipping.zip01 }}-{{ Shipping.zip02 }}
+    　送付先{{ loop.index }}住所：{{ Shipping.Pref.name }}{{ Shipping.addr01 }}{{ Shipping.addr02 }}
+    　送付先{{ loop.index }}電話番号：{{ Shipping.tel01 }}-{{ Shipping.tel02 }}-{{ Shipping.tel03 }}
+    　送付先{{ loop.index }}のし・ギフト包装：
+    　送付先{{ loop.index }}お届け方法：{{ Shipping.Delivery.name }}
+    　送付先{{ loop.index }}お届け希望日：{% if deliveryDateArray[Shipping.id] is defined and deliveryDateArray[Shipping.id] != null %}{{ deliveryDateArray[Shipping.id]}}{% else %}指定なし{% endif %}
+
+    　送付先{{ loop.index }}お届け希望時間：{{ Shipping.shipping_delivery_time|default('指定なし') }}
+{% endfor %}
+■通信欄
+{{ Order.message }}

@@ -1,0 +1,46 @@
+# GtmLite: Google Tag Manager コンテナタグ設置プラグイン
+# Copyright (C) 2017 Freischtide Inc. All Rights Reserved.
+# http://freischtide.tumblr.com/
+#
+# License: see LICENSE.txt
+Plugin\GtmLite\Entity\GtmLite:
+  type: entity
+  table: plg_gtmlite_plugin
+  repositoryClass: Plugin\GtmLite\Repository\GtmLiteRepository
+  id:
+    id:
+      type: integer
+      nullable: false
+      unsigned: false
+      id: true
+      generator:
+        strategy: AUTO
+  fields:
+    code:
+      type: text
+      nullable: false
+      column: plugin_code
+    name:
+      type: text
+      nullable: false
+      column: plugin_name
+    tid:
+      type: text
+      nullable: true
+    tag:
+      type: smallint
+      nullable: false
+      unsigned: false
+      default: '1'
+    optional_events:
+      type: smallint
+      nullable: false
+      unsigned: false
+      default: '2'
+    create_date:
+      type: datetime
+      nullable: false
+    update_date:
+      type: datetime
+      nullable: false
+  lifecycleCallbacks: {  }

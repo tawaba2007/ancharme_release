@@ -1,0 +1,10 @@
+Product/detail.twig:
+  - [onProductDetailInitialize, NORMAL]
+Cart/index.twig:
+  - [onCartIndexInitialize, NORMAL]
+Shopping/complete.twig:
+  - [onShoppingCompleteInitialize, NORMAL]
+index.twig:
+  - [onIndexInitialize, NORMAL]
+front.shopping.index.initialize:
+  - [onShoppingIndexInitialize, NORMAL]

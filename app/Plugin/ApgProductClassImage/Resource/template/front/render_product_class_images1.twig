@@ -1,0 +1,13 @@
+{% if ProductClassImages is not empty %}
+    {% for ProductClassImage in ProductClassImages %}
+        <li>
+            {% if ProductClassImage.ProductClass.ClassCategory1 and ProductClassImage.ProductClass.ClassCategory2 %}
+            <img id="apg_product_class_image-{{ ProductClassImage.ProductClass.ClassCategory1.id }}-{{ ProductClassImage.ProductClass.ClassCategory2.id }}" style="display: none;" class="apg_product_class_images" src="{{ ProductClassImage.getImageUrl() }}">
+            {% elseif ProductClassImage.ProductClass.ClassCategory1 %}
+                <img id="apg_product_class_image-{{ ProductClassImage.ProductClass.ClassCategory1.id }}-" style="display: none;" class="apg_product_class_images" src="{{ ProductClassImage.getImageUrl() }}">
+            {% elseif ProductClassImage.ProductClass.ClassCategory2 %}
+                <img id="apg_product_class_image--{{ ProductClassImage.ProductClass.ClassCategory2.id }}" style="display: none;" class="apg_product_class_images" src="{{ ProductClassImage.getImageUrl() }}">
+            {% endif %}
+        </li>
+    {% endfor %}
+{% endif %}

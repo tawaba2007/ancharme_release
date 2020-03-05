@@ -1,0 +1,10 @@
+name: Facebook連携プラグイン
+code: FacebookAdsToolbox
+version: 1.0.1
+
+service:
+    - FacebookAdsToolboxServiceProvider
+orm.path:
+    - /Resource/doctrine
+
+event: PixelEvent

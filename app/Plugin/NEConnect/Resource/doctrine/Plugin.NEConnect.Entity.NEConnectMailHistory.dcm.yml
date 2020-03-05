@@ -1,0 +1,31 @@
+Plugin\NEConnect\Entity\NEConnectMailHistory:
+    type: entity
+    table: plg_ne_connect_mail_history
+    repositoryClass: Plugin\NEConnect\Repository\NEConnectMailHistoryRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: send_id
+            generator:
+                strategy: AUTO
+    fields:
+        send_date:
+            type: datetime
+            nullable: true
+        send_to:
+            type: text
+            nullable: true
+        subject:
+            type: text
+            nullable: true
+        mail_body:
+            type: text
+            nullable: true
+        order_id:
+            type: integer
+            nullable: false
+            unsigned: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,42 @@
+<td id="result_box__plg_file_name--{{ product_class_form.vars.name }}">
+    {% if not product_class_form.file_delete_flag.vars.data %}
+        {% if product_class_form.file_name.vars.value %}
+            <div class="ui-state-default" id="class_image_box_{{ product_class_form.vars.name }}">
+                <img src="{{ product_class_form.vars.value.product_class_image.getImageUrl(product_class_form.file_name.vars.value, true) }}"/>
+                <a class="delete-image" data-index="{{ product_class_form.vars.name }}">
+                    <svg class="cb cb-close">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cb-close"></use>
+                    </svg>
+                </a>
+            </div>
+        {% elseif product_class_form.vars.value.product_class_image and product_class_form.vars.value.product_class_image.file_name %}
+            <div class="ui-state-default" id="class_image_box_{{ product_class_form.vars.name }}">
+                <img src="{{ product_class_form.vars.value.product_class_image.getImageUrl }}"/>
+                <a class="delete-image" data-index="{{ product_class_form.vars.name }}">
+                    <svg class="cb cb-close">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cb-close"></use>
+                    </svg>
+                </a>
+            </div>
+        {% endif %}
+    {% endif %}
+
+    <div>
+    <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>画像を選択</span>
+        <!-- The file input field used as target for the file upload widget -->
+        <input data-id="{{ Product.id }}" data-index="{{ product_class_form.vars.name }}" class="file-upload"
+               type="file" name="image_file">
+    </span>
+    </div>
+    <div id="progress{{ product_class_form.vars.name }}" class="progress" style="display: none;">
+        <div class="progress-bar progress-bar-success"></div>
+    </div>
+
+    {#{% dump(product_class_form.file_name.vars.value) %}#}
+    {{ form_widget(product_class_form.file_name, {id: 'file_name_'~product_class_form.vars.name }) }}
+
+    {{ form_widget(product_class_form.file_delete_flag, {id: 'file_delete_flag_'~product_class_form.vars.name,attr:{style:'display:none'}}) }}
+
+</td>

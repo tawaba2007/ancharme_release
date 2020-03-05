@@ -1,0 +1,175 @@
+{#
+UaGaEEc: Google Analytics eコマース/拡張eコマース対応プラグイン
+Copyright (C) 2016-2017 Freischtide Inc. All Rights Reserved.
+http://freischtide.tumblr.com/
+
+License: see LICENSE.txt
+#}
+{% extends 'default_frame.twig' %}
+
+{% set menus = ['store', 'plugin'] %}
+
+{% block title %}Google Analytics eコマース/拡張eコマース対応プラグイン{% endblock %}
+{% block sub_title %}設定{% endblock %}
+
+{% form_theme form 'Form/bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block main %}
+  <form name="form1" id="form1" method="post" action="?">
+    {{ form_row(form._token) }}
+    <div class="box form-horizontal">
+      <div class="box-header">
+        <h3 class="box-title">基本設定</h3>
+      </div>
+      <div class="box-body">
+        <div class="form-group">
+          {{ form_label(form.tid) }}
+          <div class="col-sm-10 {% if form.tid.vars.errors is not empty %}has-error{% endif %}">
+            {{ form_widget(form.tid, {attr: {placeholder: 'UA-xxxxxxxx-x'}}) }}
+            <small class="help-block">
+              「UA-xxxxxxxx-x」形式のIDを入力
+            </small>
+            {{ form_errors(form.tid) }}
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form_label(form.eec) }}
+          <div class="col-sm-10 {% if form.eec.vars.errors is not empty %}has-error{% endif %}">
+            {{ form_widget(form.eec) }}
+            <small class="help-block">
+              拡張eコマースかeコマース のどちらを使うかを決定します。eコマースを設定した場合、購入完了ページにのみ、eコマースのタグが出力されます。
+            </small>
+            {{ form_errors(form.eec) }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box form-horizontal">
+      <div class="box-header">
+        <h3 class="box-title">オプション</h3>
+      </div>
+      <div class="box-body">
+        <div class="form-group">
+          {{ form_label(form.category) }}
+          <div class="col-sm-10 {% if form.category.vars.errors is not empty %}has-error{% endif %}">
+            {{ form_widget(form.category) }}
+            <small class="help-block">
+              レポートにカテゴリ名を含めるかを指定します。<br />
+            </small>
+            {{ form_errors(form.category) }}
+          </div>
+        </div>
+        <div class="form-group" style="display:none;">
+          {{ form_label(form.include_variant) }}
+          <div class="col-sm-10 {% if form.include_variant.vars.errors is not empty %}has-error{% endif %}">
+            {{ form_widget(form.include_variant) }}
+            <small class="help-block">
+              商品名に規格を含めるか指定します。<br />
+              例）商品が「アイス」で、「味」、「大きさ」という規格がある場合、「含める」を設定すると商品名は「アイス(抹茶/S)」となります。<br />
+              拡張eコマースを使用する場合、「含めない」を選択した場合 'variant' に '抹茶/S' が入ります。
+            </small>
+            {{ form_errors(form.include_variant) }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box form-horizontal">
+      <div class="box-header">
+        <h3 class="box-title">高度な設定</h3>
+      </div>
+      <div class="box-body">
+        <div class="form-group">
+          {{ form_label(form.track_user_id) }}
+          <div class="col-sm-10 {% if form.track_user_id.vars.errors is not empty %}has-error{% endif %}">
+            {{ form_widget(form.track_user_id) }}
+            <small class="help-block">
+              「User-ID ビュー」をご利用の場合には、こちらを有効にしてください。
+            </small>
+            {{ form_errors(form.track_user_id) }}
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form_label(form.display_features) }}
+          <div class="col-sm-10 {% if form.display_features.vars.errors is not empty %}has-error{% endif %}">
+            {{ form_widget(form.display_features) }}
+            <small class="help-block">
+              「ユーザー属性とインタレストカテゴリに関するレポート」をご利用の場合には、こちらを有効にしてください。
+            </small>
+            {{ form_errors(form.display_features) }}
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form_label(form.user_timings) }}
+          <div class="col-sm-10 {% if form.user_timings.vars.errors is not empty %}has-error{% endif %}">
+            {{ form_widget(form.user_timings) }}
+            <small class="help-block">
+              「カスタム速度レポート」をご利用の場合には、こちらを有効にしてください。
+            </small>
+            {{ form_errors(form.user_timings) }}
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form_label(form.imp_track) }}
+          <div class="col-sm-10 {% if form.imp_track.vars.errors is not empty %}has-error{% endif %}">
+            {{ form_widget(form.imp_track) }}
+            <small class="help-block">
+              関連商品、商品カテゴリ、検索結果、お気に入りなどでの商品表示をインプレッションとして計測したい場合は、こちらを有効にしてください。<br>※このオプションは「拡張eコマース」利用時のみ有効です。
+            </small>
+            {{ form_errors(form.imp_track) }}
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form_label(form.crossdomain_linker) }}
+          <div class="col-sm-10 {% if form.crossdomain_linker.vars.errors is not empty %}has-error{% endif %}">
+            {{ form_widget(form.crossdomain_linker, {attr: {placeholder: 'abc.com'}}) }}
+            <small class="help-block">
+              クロスドメインでトラッキングをする場合にドメインを指定する。複数ある場合は , で区切る。 ex. abc.com,def.com,ghi.com
+            </small>
+            {{ form_errors(form.crossdomain_linker) }}
+          </div>
+        </div>
+        <div class="form-group">
+          {{ form_label(form.use_custom_referrer) }}
+          <div class="col-sm-10 {% if form.use_custom_referrer.vars.errors is not empty %}has-error{% endif %}">
+            {{ form_widget(form.use_custom_referrer) }}
+            <small class="help-block">
+              カスタムリファラを設定することでサイト内からのプロダクト詳細ページへの流入に加え、リファラ文字にマッチした流入元をトラックできるようになります。<br />
+              例）google.co.jp からの流入をトラックしたい場合、リファラ文字に "google.co.jp" 、トラック名称に "Google" と設定しておけば、リファラが "google.co.jp" にマッチした場合に "Google" が送信されます。
+            </small>
+            {{ form_errors(form.use_custom_referrer) }}
+          </div>
+        </div>
+        <div class="form-group" id="custom_referrers" style="display:{% if uagaeec.use_custom_referrer == 1 %}block{% else %}none{% endif %};">
+          {% for i in 1..8 %}
+            <label class="col-sm-2 control-label">{% if i == 1 %}カスタムリファラ{% endif %}</label>
+            <div class="col-sm-5">
+              <small>リファラ文字列{{ i }}:</small><input type="text" value="{{ uagaeec['custom_referrer' ~ i]['k'] }}" class="form-control" name="custom_referrer_key[]" id="uagaeec_custom_referrer_key{{ i }}">
+            </div>
+            <div class="col-sm-5">
+              <small>トラック名称{{ i }}:</small><input type="text" value="{{ uagaeec['custom_referrer' ~ i]['v'] }}" class="form-control" name="custom_referrer_value[]" id="uagaeec_custom_referrer_value{{ i }}">
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="row btn_area">
+      <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 text-center">
+        <button class="btn btn-primary btn-block btn-lg" onclick="document.form1.submit(); return false;">
+          この内容で登録する
+        </button>
+      </div>
+    </div>
+  </form>
+  <script type="text/javascript">
+    $('input[name="uagaeec[use_custom_referrer]"]:radio').change(function (e) {
+      if ($(this).val() == '1') {
+        $('#custom_referrers').fadeIn();
+      } else {
+        $('#custom_referrers').fadeOut();
+      }
+    });
+  </script>
+{% endblock %}

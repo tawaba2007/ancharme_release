@@ -1,0 +1,25 @@
+Plugin\ApgProductClassImage\Entity\ProductClassImage:
+    type: entity
+    table: plg_product_class_image
+    repositoryClass: Plugin\ApgProductClassImage\Repository\ProductClassImageRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: product_class_id
+            generator:
+                strategy: NONE
+    fields:
+        file_name:
+            type: text
+            nullable: false
+    oneToOne:
+        ProductClass:
+            targetEntity: Eccube\Entity\ProductClass
+            joinColumn:
+                name: product_class_id
+                referencedColumnName: product_class_id
+    lifecycleCallbacks: {  }

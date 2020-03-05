@@ -1,0 +1,82 @@
+# UaGaEEc: Google Analytics eコマース/拡張eコマース対応プラグイン
+# Copyright (C) 2016-2017 Freischtide Inc. All Rights Reserved.
+# http://freischtide.tumblr.com/
+#
+# License: see LICENSE.txt
+Plugin\UaGaEEc\Entity\UaGaEEc:
+  type: entity
+  table: plg_uagaeec_plugin
+  repositoryClass: Plugin\UaGaEEc\Repository\UaGaEEcRepository
+  id:
+    id:
+      type: integer
+      nullable: false
+      unsigned: false
+      id: true
+      generator:
+        strategy: AUTO
+  fields:
+    code:
+      type: text
+      nullable: false
+      column: plugin_code
+    name:
+      type: text
+      nullable: false
+      column: plugin_name
+    tid:
+      type: text
+      nullable: true
+    eec:
+      type: smallint
+      nullable: false
+      unsigned: false
+      default: '1'
+    category:
+      type: smallint
+      nullable: false
+      unsigned: false
+      default: '1'
+    include_variant:
+      type: smallint
+      nullable: false
+      unsigned: false
+      default: '2'
+    track_user_id:
+      type: smallint
+      nullable: false
+      unsigned: false
+      default: '2'
+    display_features:
+      type: smallint
+      nullable: false
+      unsigned: false
+      default: '2'
+    user_timings:
+      type: smallint
+      nullable: false
+      unsigned: false
+      default: '2'
+    imp_track:
+      type: smallint
+      nullable: false
+      unsigned: false
+      default: '1'
+    crossdomain_linker:
+      type: text
+      nullable: true
+    use_custom_referrer:
+      type: smallint
+      nullable: false
+      unsigned: false
+      default: '2'
+    custom_referrers:
+      type: text
+      nullable: true
+    create_date:
+      type: datetime
+      nullable: false
+    update_date:
+      type: datetime
+      nullable: false
+  lifecycleCallbacks: {  }

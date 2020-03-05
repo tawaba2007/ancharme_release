@@ -1,0 +1,21 @@
+Plugin\OrderNumber\Entity\OrderNumber:
+    type: entity
+    table: plg_order_number
+    repositoryClass: Plugin\OrderNumber\Repository\OrderNumberRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: order_number_id
+            generator:
+                strategy: AUTO
+    fields:
+        order_id:
+            type: integer
+            nullable: false
+        order_number:
+            type: text
+            nullable: false
+    lifecycleCallbacks: {  }

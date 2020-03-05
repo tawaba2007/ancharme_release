@@ -1,0 +1,26 @@
+<script>
+    $(function () {
+        $('select[name=classcategory_id1]')
+            .change(function () {
+                $('.apg_product_class_images').hide();
+
+                var $form = $(this).parents('form');
+                var $sele1 = $(this);
+                var $sele2 = $form.find('select[name=classcategory_id2]');
+                if (!$sele2 || $sele2.length <= 0) {
+                    var id = "apg_product_class_image-" + $sele1.val() + "-"
+                    $("img#" + id).show();
+                }
+            });
+
+        $('select[name=classcategory_id2]')
+            .change(function () {
+                $('.apg_product_class_images').hide();
+                var $form = $(this).parents('form');
+                var $sele1 = $form.find('select[name=classcategory_id1]');
+                var $sele2 = $(this);
+                var id = "apg_product_class_image-" + $sele1.val() + "-" + $sele2.val();
+                $("img#" + id).show();
+            });
+    });
+</script>

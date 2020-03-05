@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{ BaseInfo.shop_name }}{% if subtitle is defined and subtitle is not empty %} / {{ subtitle }}{% elseif title is defined and title is not empty %} / {{ title }}{% endif %}</title>
+  {% if PageLayout.author is not empty %}
+    <meta name="author" content="{{ PageLayout.author }}">
+  {% endif %}
+  {% if PageLayout.description is not empty %}
+    <meta name="description" content="{{ PageLayout.description }}">
+  {% endif %}
+  {% if PageLayout.keyword is not empty %}
+    <meta name="keywords" content="{{ PageLayout.keyword }}">
+  {% endif %}
+  {% if PageLayout.meta_robots is not empty %}
+    <meta name="robots" content="{{ PageLayout.meta_robots }}">
+  {% endif %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="{{ app.config.front_urlpath }}/img/common/favicon.ico">
+
+
+  <!-- スマホ用アイコン -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ app.config.front_urlpath }}/img/common/apple-touch-icon.png">
+  <!-- Vendor
+  ============================================= -->
+  <link rel="stylesheet" href="{{ app.config.front_urlpath }}/css/style.css?v={{ constant('Eccube\\Common\\Constant::VERSION') }}">
+  <link rel="stylesheet" href="{{ app.config.front_urlpath }}/css/slick.css?v={{ constant('Eccube\\Common\\Constant::VERSION') }}">
+  <link rel="stylesheet" href="{{ app.config.front_urlpath }}/css/default.css?v={{ constant('Eccube\\Common\\Constant::VERSION') }}">
+  <link rel="stylesheet" href="{{ app.config.front_urlpath }}/css/origin.css?v={{ constant('Eccube\\Common\\Constant::VERSION') }}">
+  <link rel="stylesheet" href="{{ app.config.front_urlpath }}/css/baguetteBox.css?v={{ constant('Eccube\\Common\\Constant::VERSION') }}">
+
+  <!-- Theme
+  ============================================= -->
+  <link rel="stylesheet" href="{{ app.config.front_urlpath }}/css/theme.css?v={{ constant('Eccube\\Common\\Constant::VERSION') }}">
+
+  <!-- for original theme CSS -->
+  {% block stylesheet %}{% endblock %}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="{{ app.config.front_urlpath }}/js/vendor/jquery-1.11.3.min.js?v={{ constant('Eccube\\Common\\Constant::VERSION') }}"><\/script>')</script>
+
+  {# ▼Head COLUMN #}
+  {% if PageLayout.Head %}
+    {# ▼上ナビ #}
+    {{ include('block.twig', {'Blocks': PageLayout.Head}) }}
+    {# ▲上ナビ #}
+  {% endif %}
+  {# ▲Head COLUMN #}
+
+</head>
+<body id="page_{{ app.request.get('_route') }}" class="{{ body_class|default('other_page') }}">
+  <div id="wrapper">
+
+    <header id="header">
+      <div class="container inner">
+        {# ▼HeaderInternal COLUMN #}
+        {% if PageLayout.Header %}
+          {# ▼上ナビ #}
+          {{ include('block.twig', {'Blocks': PageLayout.Header}) }}
+          {# ▲上ナビ #}
+        {% endif %}
+        {# ▲HeaderInternal COLUMN #}
+        <p id="btn_menu"><a class="nav-trigger" href="#nav">Menu<span></span></a></p>
+      </div>
+    </header>
+
+    <div id="contents" class="{{ PageLayout.theme }}">
+
+      <div id="contents_top">
+        {# ▼TOP COLUMN #}
+        {% if PageLayout.ContentsTop %}
+          {# ▼上ナビ #}
+          {{ include('block.twig', {'Blocks': PageLayout.ContentsTop}) }}
+          {# ▲上ナビ #}
+        {% endif %}
+        {# ▲TOP COLUMN #}
+      </div>
+
+      <div class="container inner">
+        <div class="row">
+
+          {# ▼メイン上部 #}
+          {% if PageLayout.MainTop %}
+            <div id="main_top" class="col-xs-12">
+              {{ include('block.twig', {'Blocks': PageLayout.MainTop}) }}
+            </div>
+          {% endif %}
+          {# ▲メイン上部 #}
+
+          <div id="main" class="col-xs-12 {% if PageLayout.theme == 'theme_side_right' %}col-sm-9{% elseif PageLayout.theme == 'theme_side_left' %}col-sm-9 col-sm-push-3{% elseif PageLayout.theme == 'theme_side_both' %}col-sm-6 col-sm-push-3{% endif %} origin-main">
+
+            <div id="main_middle">
+              {% block main %}{% endblock %}
+            </div>
+
+            {# ▼メイン下部 #}
+            {% if PageLayout.MainBottom %}
+              <div id="main_bottom">
+                {{ include('block.twig', {'Blocks': PageLayout.MainBottom}) }}
+              </div>
+            {% endif %}
+            {# ▲メイン下部 #}
+          </div>
+
+          {# ▼LEFT COLUMN #}
+          {% if PageLayout.SideLeft %}
+            <div id="side_left" class="side col-sm-3 {% if PageLayout.theme == 'theme_side_both' %}col-sm-pull-6{% else %}col-sm-pull-9{% endif %}">
+              {# ▼左ナビ #}
+              {{ include('block.twig', {'Blocks': PageLayout.SideLeft}) }}
+              {# ▲左ナビ #}
+            </div>
+          {% endif %}
+          {# ▲LEFT COLUMN #}
+
+          {# ▼RIGHT COLUMN #}
+          {% if PageLayout.SideRight %}
+            <div id="side_right" class="side col-sm-3">
+              {# ▼右ナビ #}
+              {{ include('block.twig', {'Blocks': PageLayout.SideRight}) }}
+              {# ▲右ナビ #}
+            </div>
+          {% endif %}
+          {# ▲RIGHT COLUMN #}
+
+        </div><!-- /row -->
+
+        {# ▼BOTTOM COLUMN #}
+        {% if PageLayout.ContentsBottom %}
+          <div id="contents_bottom">
+            {# ▼下ナビ #}
+            {{ include('block.twig', {'Blocks': PageLayout.ContentsBottom}) }}
+            {# ▲下ナビ #}
+          </div>
+        {% endif %}
+        {# ▲BOTTOM COLUMN #}
+
+      </div><!-- /container -->
+
+      <footer id="footer">
+        {# ▼Footer COLUMN#}
+        {% if PageLayout.Footer %}
+          {# ▼上ナビ #}
+          {{ include('block.twig', {'Blocks': PageLayout.Footer}) }}
+          {# ▲上ナビ #}
+        {% endif %}
+        {# ▲Footer COLUMN#}
+      </footer>
+
+    </div><!-- /#contents -->
+
+    <div id="drawer" class="drawer sp"></div>
+
+  </div><!-- /#wrapper -->
+
+  <div class="overlay"></div>
+
+  <script src="{{ app.config.front_urlpath }}/js/vendor/bootstrap.custom.min.js?v={{ constant('Eccube\\Common\\Constant::VERSION') }}"></script>
+  <script src="{{ app.config.front_urlpath }}/js/vendor/slick.min.js?v={{ constant('Eccube\\Common\\Constant::VERSION') }}"></script>
+  <script src="{{ app.config.front_urlpath }}/js/vendor/baguetteBox.js?v={{ constant('Eccube\\Common\\Constant::VERSION') }}"></script>
+  <script src="{{ app.config.front_urlpath }}/js/function.js?v={{ constant('Eccube\\Common\\Constant::VERSION') }}"></script>
+  <script src="{{ app.config.front_urlpath }}/js/eccube.js?v={{ constant('Eccube\\Common\\Constant::VERSION') }}"></script>
+  <script>
+  $(function () {
+    $('#drawer').append($('.drawer_block').clone(true).children());
+    $.ajax({
+      url: '{{ app.config.front_urlpath }}/img/common/svg.html',
+      type: 'GET',
+      dataType: 'html',
+    }).done(function(data){
+      $('body').prepend(data);
+    }).fail(function(data){
+    });
+  });
+  </script>
+<script>
+  window.onload = function() {
+    baguetteBox.run('.gallery-container-list');
+  };
+</script>
+<!-- original
+============================================= -->
+<script src="{{ app.config.front_urlpath }}/js/common/compornents/tmp_pickup.js"></script>
+<script src="{{ app.config.front_urlpath }}/js/common/compornents/tmp_headerNavi.js"></script>
+
+
+{% block javascript %}{% endblock %}
+</body>
+</html>

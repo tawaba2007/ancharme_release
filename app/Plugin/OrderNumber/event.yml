@@ -1,0 +1,23 @@
+Admin/Order/index.twig:
+    - [onAdminOrderSearchRender, NORMAL]
+Admin/Order/edit.twig:
+    - [onAdminOrderEditRender, NORMAL]
+Admin/Order/mail_confirm.twig:
+    - [onAdminOrderMailConfirmRender, NORMAL]
+Admin/Order/mail_all_confirm.twig:
+    - [onAdminOrderMailAllConfirmRender, NORMAL]
+
+front.shopping.index.initialize:
+    - [onShoppingInitialize, NORMAL]
+front.shopping.confirm.complete:
+    - [onShoppingConfirm, NORMAL]
+
+Mypage/index.twig:
+    - [onMypageIndexRender, NORMAL]
+Mypage/history.twig:
+    - [onMypageHistoryRender, NORMAL]
+
+mail.order:
+    - [onMailOrder, NORMAL]
+mail.admin.order:
+    - [onMailAdminOrder, NORMAL]

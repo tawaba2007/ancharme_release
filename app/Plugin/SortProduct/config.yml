@@ -1,0 +1,9 @@
+name: 商品並び替えプラグイン
+code: SortProduct
+version: 1.4.0
+event: Event
+service:
+    - SortProductServiceProvider
+orm.path:
+    - /Resource/doctrine
+

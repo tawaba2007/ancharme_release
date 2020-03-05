@@ -1,0 +1,32 @@
+Plugin\ApgProductClassImage\Entity\ProductClassImageSetting:
+    type: entity
+    table: plg_product_class_image_setting
+    repositoryClass: Plugin\ApgProductClassImage\Repository\ProductClassImageSettingRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: product_class_image_setting_id
+            generator:
+                strategy: NONE
+    fields:
+        image_insert_type:
+            type: integer
+            nullable: false
+            options:
+                default: 0
+        image_max_size:
+            type: integer
+            nullable: true
+            options:
+                default: 2
+        image_real_path:
+            type: integer
+            nullable: true
+        images_url:
+            type: text
+            nullable: true
+    lifecycleCallbacks: {  }

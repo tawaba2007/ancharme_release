@@ -1,0 +1,6 @@
+front.entry.index.initialize:
+    - [onFrontEntryIndexInitialize, NORMAL]
+eccube.event.render.entry_activate.before:
+    - [onControllerEntryActivateBefore, NORMAL]
+Shopping/login.twig:
+    - [onRenderShoppingLogin, NORMAL]

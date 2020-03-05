@@ -1,0 +1,23 @@
+Plugin\GmoEpsilon\Entity\Extension\OrderExtension:
+    type: entity
+    table: plg_epsilon_order_extension
+    repositoryClass: Plugin\GmoEpsilon\Repository\Extension\OrderExtensionRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: order_id
+    fields:
+        trans_code:
+            type: text
+            nullable: true
+        regular_order_id:
+            type: integer
+            nullable: true
+        payment_info:
+            type: text
+            nullable: true
+
+    lifecycleCallbacks: {  }
