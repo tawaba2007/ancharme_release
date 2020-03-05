@@ -1,0 +1,83 @@
+@charset "utf-8";
+
+#sales_ranking .title_block {
+    margin-bottom: 30px;
+}
+
+#sales_ranking .title_block .heading01 {
+    font-family: 'DM Serif Display', serif;
+    text-align: center;
+    color:#707070;
+    font-size: 5vw;
+    letter-spacing: 1vw;
+}
+
+#sales_ranking .ranking_block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#sales_ranking .ranking_block .list_item {
+    width: 30%;
+    margin-bottom:  20px;
+}
+
+#sales_ranking .pickup_item {
+    position: relative;
+}
+
+#sales_ranking .ranking_block .pickup_item .label_block {
+    position: absolute;
+    top: -14px;
+    left: -12px;
+}
+
+#sales_ranking .ranking_block .label_block .label_ranking {
+    width: 30px;
+    height: 30px;
+    background: #D4C8C4;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    color: #fff;
+}
+
+/******************************
+	Media Query
+*******************************/
+@media only screen and (min-width: 768px) {
+    #sales_ranking .ranking_block .list_item {
+        width: 30%;
+        margin-bottom: 60px;
+    }
+
+    #sales_ranking .ranking_block .label_block {
+        left: -15px;
+    }
+
+    #sales_ranking .ranking_block .label_block .label_ranking {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+    }
+
+    #sales_ranking .title_block .heading01 {
+        font-size: 40px;
+    }
+
+    #sales_ranking .ranking_block::before {
+        content: "";
+        display: block;
+        width: 30%;
+        -webkit-box-ordinal-group: 2;
+        order: 1;
+    }
+
+    #sales_ranking .ranking_block::after {
+        content: "";
+        display: block;
+        width: 30%;
+    }
+}

@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+#main_middle .main_visual {
+    margin-bottom: 16px;
+}
+
+.main_visual {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.main_visual img {
+  width: 100%;
+}

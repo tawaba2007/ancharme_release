@@ -1,0 +1,115 @@
+@charset "utf-8";
+
+#coordinate {
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-bottom: 60px;
+}
+
+#coordinate .section_container > .title_block .title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 5vw;
+  color: #555;
+  letter-spacing: 1vw;
+  font-family: "DM Serif Display", serif;
+}
+
+#coordinate .list_block .list .list_item {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #707070;
+  padding-bottom: 20px;
+}
+
+#coordinate .list_block .list .list_item .link {
+    display: block;
+}
+
+#coordinate .news_item_block {
+  display: flex;
+}
+
+#coordinate .image_block {
+  width: 146px;
+  margin-right: 8px;
+}
+
+#coordinate .detail_block .label_new {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+#coordinate .detail_block .label_new .text {
+  background: #e0847b;
+  height: 20px;
+  display: inline-block;
+  line-height: 20px;
+  width: 40px;
+  text-align: center;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+#coordinate .detail_block {
+  flex: 1;
+}
+
+#coordinate .detail_block .date {
+  margin-bottom: 5px;
+}
+
+#coordinate .detail_block .date .text {
+  font-size: 12px;
+}
+
+#coordinate .detail_block .title_block .title {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+#coordinate .detail_block .text_block .text {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+#coordinate .buttonLayout {
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-bottom: 60px;
+}
+
+#coordinate .button_block {
+  text-align: right;
+}
+
+#coordinate .button_block .link {
+  display: inline-block;
+  width: 140px;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #333;
+}
+
+/******************************
+  Media Query
+*******************************/
+@media only screen and (min-width: 768px) {
+  #coordinate {
+    margin-bottom: 100px;
+  }
+
+  #coordinate .section_container > .title_block .title {
+    font-size: 24px;
+  }
+
+  #coordinate .button_block {
+     text-align: center;
+  }
+
+  #coordinate .list_block {
+      margin-bottom: 60px;
+  }
+}

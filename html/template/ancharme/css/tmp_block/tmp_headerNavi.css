@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+#headerNavi {
+    padding-top: 61px;
+    margin-bottom: 10px;
+}
+
+#headerNavi .list-block .list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#headerNavi .list-block .list .list-item {
+    width: 20%;
+    background-image: url("https://ancharme.jp/html/template/ancharme/img/top/footer.gif");
+}
+
+#headerNavi .list-block .list .list-item.is-active {
+    border-bottom: 3px solid #84564b;
+}
+
+#headerNavi .list-block .list .list-item .link {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 9px;
+    color: #fff;
+}
+
+#headerNavi .list-block .list .list-item .link .icon {
+    width: 25px;
+}
+
+#headerNavi .list-block .list .list-item .link figcaption {
+    margin-top: 5px;
+    color: #ffffff;
+    font-weight: 700;
+}

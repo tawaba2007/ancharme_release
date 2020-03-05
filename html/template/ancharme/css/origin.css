@@ -1,0 +1,971 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap');
+@import url("tmp_block/tmp_youtube.css");
+@import url("tmp_block/sales_ranking.css");
+@import url("tmp_block/entry.css");
+@import url("tmp_block/tmp_itemCategory_b.css");
+@import url("tmp_block/tmp_headerNavi.css");
+@import url("tmp_layout/tmp_blockLayout.css");
+@import url("tmp_block/tmp_pickup.css");
+@import url("tmp_block/tmp_contents_block.css");
+@import url("tmp_block/tmp_coordinate.css");
+@import url("tmp_frame/tmp_default.css");
+@import url("tmp_frame/tmp_index.css");
+@import url("page/pv.css");
+@import url("page/article.css");
+@import url("tmp_frame/tmp_detail.css");
+
+.plg_aui_header .aui_header_body .header_logo_area .header_logo img {
+  width: 110px;
+}
+
+.contents-title {
+  text-align: center;
+  color: #707070;
+  font-family: 'DM Serif Display', serif;
+  font-size: 5vw;
+  letter-spacing: 1vw;
+}
+
+.cart-icon-image {
+  width: 24px;
+}
+
+/* banner */
+.bannerContetnts-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.bannerContetnts-list-item {
+  width: 50%;
+}
+
+/* topCategory */
+.topCategory-wrapp {
+  margin-bottom: 30px;
+}
+
+.topCategory-wrapp.ranking,
+.topCategory-wrapp.reArrival {
+  background: #fdebe9;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.topCategory-wrapp .item-list-wrapp {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.topCategory-wrapp .item-list-contents {
+  width: 50%;
+  margin-bottom: 20px;
+}
+
+.list-wrapp .list .list-item {
+  display: inline-block;
+  width: 100%;
+}
+
+.list-wrapp .list .list-item:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.list-wrapp .list .list-item .list-item-link {
+  display: block;
+}
+
+.contents-list-wrapp .contents-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.contents-list-wrapp .contents-list .contents-list-item {
+  width: calc(50% - 6px);
+  margin-bottom: 12px;
+}
+
+.contents-list-item-link {
+  display: block;
+}
+
+.topCategory-wrapp.gallery #original-category .item-list-contents {
+  margin-bottom: 0;
+}
+
+.topCategory-wrapp.gallery .original-category-item-list-block {
+  margin-bottom: 20px;
+}
+
+.topCategory-wrapp .item-list-contents-name {
+  text-align: center;
+  font-weight: normal;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+.topCategory-wrapp .price-text {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+.topCategory-wrapp .contents-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.topCategory-wrapp .contents-title .contents-title-image {
+  width: 140px;
+}
+
+.topCategory-wrapp.item-category .contents-title .contents-title-image {
+  width: 200px;
+}
+
+.topCategory-wrapp .viewMore {
+  text-align: center;
+  margin-top: 0;
+}
+
+.topCategory-wrapp.shop-guide .contents-title .contents-title-image {
+  width: 229px;
+}
+
+.contents-title-text {
+  text-align: center;
+  margin: 30px 33px 0px;
+}
+.contents-title-text {
+  text-align: left;
+}
+
+.topCategory-wrapp .viewMore img {
+  width: 109px;
+}
+
+/* 新着商品ブロック */
+#item_list #new-item-list .new-item-list-item {
+  margin-bottom: 20px;
+}
+
+/* sns */
+.sns {
+  padding: 20px 0;
+}
+
+.sns .sns-button-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.sns-link+.sns-link {
+  margin-left: 10px;
+}
+
+.sns .sns-button-img {
+  width: 30px;
+}
+
+.sns .sns-button-img.youtbe {
+  width: 40px;
+}
+
+/* shop-guide */
+.guide-wrapp .guide-list {
+  margin-bottom: 10px;
+}
+
+/*ボタン装飾*/
+.guide-wrapp label {
+  padding: 15px;
+  cursor:pointer;
+  background: #F2F2F2;
+  font-size: 14px;
+  display: inline-block;
+  width: 100%;
+}
+
+/*ボタンホバー時*/
+.guide-wrapp label:hover {
+  background: #efefef;
+}
+
+.guide-wrapp .label-icon {
+  margin-right: 5px;
+  font-size: 0;
+  vertical-align: bottom;
+}
+
+/*チェックは見えなくする*/
+.guide-wrapp input {
+  display: none;
+}
+
+/*中身を非表示にしておく*/
+.guide-wrapp .hidden_show {
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: 0.8s;
+}
+
+/*クリックで中身表示*/
+.guide-wrapp input:checked~.hidden_show {
+  height: auto;
+  opacity: 1;
+}
+
+.guide-text-wrapp {
+  padding: 10px;
+}
+
+.footer-navigation {
+  margin-top: 20px;
+}
+
+/* footer */
+.footer_logo_area .logo {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.footer_logo_area .logo img {
+  width: 140px;
+}
+
+/* qr code*/
+.qrcode{
+    margin: auto;
+    width: 140px;
+    vertical-align: center;
+}
+
+
+
+/* 商品一覧ページ */
+.page-title-h1 {
+  text-align: center;
+  font-weight: normal;
+  font-family: 'DM Serif Display', serif;
+}
+
+#original-category {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 20px;
+}
+
+#original-category .item-list-wrapp {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#original-category .item-list-contents {
+  width: calc(50% - 6px);
+  margin-bottom: 36px;
+}
+
+.topCategory-wrapp #original-category .item-list-contents {
+  padding: 0px;
+}
+
+#original-category .item-list-contents-name {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  text-align: left;
+}
+
+#original-category .item-list-contents-name .item-list-contents-link {
+  font-family: "游ゴシック体", YuGothic, "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;
+  font-weight: bold;
+  color: #000;
+}
+
+#original-category .price-text {
+  margin: 0;
+  text-align: left;
+  font-family: "Montserrat", "メイリオ", sans-serif;
+}
+
+/* 商品詳細ページ */
+#item_detail {
+  margin-top: 10px;
+}
+
+.classcategory_list li .form-control {
+  color: #000;
+}
+
+/* 下層ページ */
+.text-wrapp {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.news-page-title-wrapp {
+  margin-bottom: 60px;
+}
+
+.page-title-wrapp {
+  max-width: 500px;
+  margin: 0 auto 20px;
+
+}
+
+.page-about .image-wrapp {
+  max-width: 500px;
+  margin: 0 auto 20px;
+  text-align: center;
+}
+
+.page-about .text-wrapp {
+  max-width: 500px;
+}
+
+.page-vision .image-wrapp {
+  max-width: 850px;
+  margin: 0 auto 60px;
+}
+
+.page-concept .image-wrapp {
+  max-width: 850px;
+  margin: 0 auto 60px;
+}
+
+/* ご利用ガイド */
+.guide-navigation {
+  margin-bottom: 80px;
+}
+
+.guide-contents-box {
+  margin-bottom: 80px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.guide-navigation-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.guide-navigation-list-item {
+  width: 50%;
+  text-align: center;
+  padding: 5px;
+}
+
+.guide-navigation-list-item a {
+  display: block;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #eee;
+}
+
+/* プライバシーポリシー */
+#privacy_box {
+  max-width: 600px;
+}
+
+#privacy_box .list {
+  line-height: 2;
+}
+
+#privacy_box .list-item {
+  margin-bottom: 20px;
+  text-indent: -1em;
+}
+
+/* ニュース */
+#page-news .contents-wrapp {
+  display: flex;
+  box-sizing: border-box;
+  max-width: 500px;
+  margin: 0 auto 60px;
+}
+
+#page-news .contents-image-wrapp {
+  width: 200px;
+  margin-right: 20px;
+}
+
+#page-news .contents-text-wrapp {}
+
+#page-news .contents-title-h3 {
+  margin-top: 0;
+}
+
+#page-news .contents-title-h3 a {
+  font-size: 16px;
+}
+
+#page-news .contents-text-area {
+  margin-top: 0;
+}
+
+#news-page {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#news-page .news-page-title-wrapp h1 {
+  margin-bottom: 10px;
+}
+
+#news-page .time {
+  text-align: center;
+}
+
+.news-page-title-wrapp {
+  margin-bottom: 60px;
+}
+
+/* ギャラリー */
+.gallery-container-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gallery-container-list-item {
+  width: 50%;
+}
+
+/* ランキング */
+#sales_ranking {
+  width: 90%;
+  margin: 0 auto;
+}
+
+#sales_ranking .row::before,
+#sales_ranking .row::after {
+  content: none;
+}
+
+#sales_ranking_list_wrapp {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#sales_ranking_list_wrapp .sales_ranking_list_item {
+  padding: 5px 0 0 0;
+  position: relative;
+  width: 30%;
+}
+
+#sales_ranking_list_wrapp .normal_price span {
+  font-weight: normal;
+}
+
+#sales_ranking_list_wrapp .pickup_item_link {
+  position: relative;
+}
+
+#sales_ranking_list_wrapp .label-ranking {
+  position: absolute;
+  top: 15px;
+  left: 5px;
+  background: #D4C8C4;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 2.3;
+}
+
+#sales_ranking_list_wrapp .item_name {
+  margin-top: 10px;
+}
+
+#sales_ranking_list_wrapp .price_text {
+  margin-top: 5px;
+}
+
+/* end ランキング */
+
+/* オリジナルナビ */
+.origin-navi {
+  margin-bottom: 30px;
+}
+
+.origin-navi .origin-navi-list{
+  display: flex;
+  justify-content: space-between;
+}
+
+/* オリジナルヘッダー */
+.origin-header-form .input_search .form-control {
+  width:200px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-top: 30px;
+}
+
+.origin-header-form .input_search .bt_search {
+  right: 34px;
+  top: 1px;
+  height: 47px;
+  background: transparent;
+}
+
+@media only screen and (min-width: 768px) {
+
+  .contents-title {
+    font-size: 40px;
+  }
+
+  .more_btn a {
+    padding: 10px 60px;
+    font-size: 20px;
+  }
+
+  /* top */
+  #main.origin-main {
+    padding-top: 0px;
+  }
+
+  .origin-navi-list-item-link {
+    font-size: 16px;
+  }
+
+  .plg_aui_header .aui_header_body .header_logo_area .header_logo img {
+    width: 120px;
+  }
+
+  .contents-list-wrapp .contents-list .contents-list-item {
+    width: calc((100% - 26px) / 3);
+  }
+
+  .contents-list::after {
+    content: "";
+    display: block;
+    width: calc((100% - 26px) / 3);
+  }
+
+  .list-wrapp .list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .list-wrapp .list .list-item {
+    width: calc(50% - 6px);
+  }
+
+  /* banner */
+  .bannerContetnts {
+    margin-bottom: 40px;
+  }
+
+  .bannerContetnts-list {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    /* margin-left: 40px; */
+    /* margin-right: 40px; */
+    justify-content: center;
+  }
+
+  .bannerContetnts-list-item {
+    width: 22%;
+  }
+
+  .bannerContetnts-list-item+.bannerContetnts-list-item {
+    margin-left: 20px;
+  }
+
+  /* topCategory */
+  .topCategory-wrapp {
+    padding: 0 40px;
+    margin-bottom: 80px;
+    margin-top: 80px;
+  }
+
+  .topCategory-wrapp.ranking,
+  .topCategory-wrapp.reArrival {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .topCategory-wrapp .contents-title {
+    margin-bottom: 40px;
+  }
+
+  .topCategory-wrapp.ranking .contents-title {
+    margin-top: 0;
+  }
+
+  .topCategory-wrapp.ranking .viewMore {
+    margin-bottom: 0;
+  }
+
+  .topCategory-wrapp .item-list-wrapp {
+    justify-content: space-between;
+  }
+
+  .topCategory-wrapp .item-list-contents {
+    width: 25%;
+    margin-bottom: 20px;
+  }
+
+  /* shop guide */
+  .shop-guide .title-wrapp .contents-title-text{
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+
+  /* 商品一覧ページ */
+  #original-category .item-list-wrapp {
+    justify-content: start;
+  }
+
+  #original-category .item-list-contents {
+    width: 25%;
+    padding: 5px;
+  }
+
+  /* 商品詳細ページ */
+  #item_detail {
+    margin-top: 60px;
+  }
+
+  #detail_cart_box__button_area ul {
+    margin-bottom: 10px;
+  }
+
+  /* ギャラリー */
+  .gallery-container-list-item {
+    width: 25%;
+  }
+
+  /* ランキング */
+  .ranking-content {
+    width: 20%;
+  }
+
+  .footer_logo_area .logo img {
+    width: 80px;
+  }
+
+}
+
+@media only screen and (max-width: 767px) {
+
+  #main #main_middle .row {
+    padding-bottom: 0;
+  }
+
+}
+
+/*20190922追記*/
+@font-face {
+  font-family: "geotica";
+  src: url("https://ancharme.jp/html/template/ancharme/fonts/Geotica_2012.otf");
+}
+
+@font-face {
+  font-family: "utsukushi";
+  src: url("https://ancharme.jp/html/template/ancharme/fonts/UtsukushiFONT.otf");
+}
+
+@font-face {
+  font-family: "montserrat";
+  src: url("https://ancharme.jp/html/template/ancharme/fonts/Montserrat-Light.otf");
+}
+
+html {
+  overflow-x: hidden;
+}
+
+.font_a {
+  font-family: 'DM Serif Display', serif;
+}
+
+.font_b {
+  font-family: "utsukushi";
+}
+
+.font_c {
+  font-family: "montserrat";
+  color: #7C7C7C;
+}
+
+.cart_btn {
+  position: absolute;
+  top: 6px;
+  right: 15px;
+}
+
+.search_btn {
+  position: absolute;
+  top: 6px;
+  right: 50px;
+}
+
+#header {
+  background: #fff;
+}
+
+.header_logo_area {
+  margin: 0;
+}
+
+.header_logo_area h1 {
+  text-align: center;
+}
+
+.drawer-open .drawer {
+  background: #D4C8C4;
+  font-family: "utsukushi";
+  color: #fff;
+}
+
+.drawer a {
+  color: #fff;
+}
+
+.drawer ul {
+  margin: 25px 0 25px 40px;
+}
+
+.drawer ul li {
+  padding: 0 0 20px 0;
+}
+
+.drawer ul li ul {
+  margin: 0 0 0 10px;
+}
+
+.origin-navi-navigation ul li {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.origin-navi-list-item-link {
+  display: block;
+  padding: 5px;
+  font-size: 13px;
+}
+
+.origin-navi-navigation ul li+li {
+  border-left: 1px solid #707070;
+}
+
+#footer {
+  background-image: url("https://ancharme.jp/html/template/ancharme/img/top/footer.gif")
+}
+
+.nav-trigger span,
+.nav-trigger span::before,
+.nav-trigger span::after {
+  height: 1px;
+}
+
+.nav-trigger span {
+  width: 16px;
+
+}
+
+.nav-trigger span::before,
+.nav-trigger span::after {
+  left: 0;
+}
+
+.container {
+  padding: 0;
+}
+
+.ranking ul {
+  counter-reset: wpp-ranking;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.ranking ul li {
+  list-style-type: none;
+  padding: 5px 0 0 0;
+  position: relative;
+  width: 30%;
+}
+
+.ranking ul li:before {
+  background: #D4C8C4;
+  border-radius: 50%;
+  content: counter(wpp-ranking, decimal);
+  counter-increment: wpp-ranking;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1;
+  padding: 8px 12px;
+  position: absolute;
+  top: 10px;
+  left: 5px;
+}
+
+.all_item ul {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.all_item ul li {
+  padding: 5px 0 0 0;
+  width: 49%;
+}
+
+.font_b {
+  margin: 20px 0 0 6px;
+}
+
+.font_c {
+  margin: 0 0 30px 6px;
+}
+
+.more_btn {
+  text-align: center;
+}
+
+.more_btn a {
+  margin: 20px 0 40px;
+  display: inline-block;
+  color: #707070;
+  border: 1px solid #707070;
+  padding: 5px 30px;
+}
+
+#footer a.footer-navigation-list-item-link {
+  color: #474645;
+}
+
+.footer_logo_area .copyright {
+  color: #474645;
+}
+
+.event ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin:10px;
+
+}
+
+.event ul li {
+  width: 100%;
+  margin: 0 0 20px;
+
+}
+
+.event ul li img {
+  width: 100%;
+}
+
+.input_search {
+  position: relative;
+  margin: 0 0 0 20px;
+}
+
+.form-control {
+  /* 購入画面のstyleに影響が出ているので、コメントアウト */
+  /* padding: 0 40px 0 20px; */
+}
+
+.bt_search {
+  right: 34px;
+  top: -2px;
+}
+
+.drawer_official_insta {
+  margin: 0 0 30px 20px;
+}
+
+.drawer_function {
+  margin: 22px 0 20px 20px;
+}
+
+.drawer_function img {
+  margin: 0 10px 0 0;
+}
+
+.drawer_official_insta img {
+  margin: 0 10px 0 0;
+}
+
+.drawer_cart {
+  margin: 0 0 30px 20px;
+}
+
+section li img {
+  width: 100%;
+}
+
+.drawer_block {
+  display: none;
+}
+
+.pickup_item .slick-list {
+  margin-left: 0;
+  /* ガター分ネガティブマージン */
+}
+
+.col-xs-12,
+.col-sm-12,
+.row {
+  margin: 0;
+  padding: 0;
+}
+
+.drawer-open {
+  overflow-x: hidden;
+}
+
+.overlay.is-visible {
+  overflow-y: hidden;
+}
+
+.form-control {
+  color: #000;
+}
+
+.pickup_item .slick-dots {
+  bottom: -21px;
+}
+
+
+#detail_cart_box__button_area #detail_cart_box__insert_button .btn::before {
+  content: "";
+  display: inline-block;
+  background: url(https://ancharme.jp/html/template/ancharme/img/icon/cart_white.svg)
+    no-repeat;
+  width: 20px;
+  height: 20px;
+  vertical-align: text-bottom;
+  margin-right: 30px;
+}
+
+#detail_cart_box__button_area #detail_cart_box__insert_button li .btn {
+  background: #ecc5b9;
+}
+
+#detail_cart_box__button_area #detail_cart_box__favorite_button .btn::before {
+  content: "";
+  display: inline-block;
+  background: url(https://ancharme.jp/html/template/ancharme/img/icon/favorite.svg)
+    no-repeat;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  vertical-align: text-bottom;
+}

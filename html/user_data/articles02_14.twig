@@ -1,0 +1,94 @@
+{#
+    This file is part of EC-CUBE
+    
+    Copyright(c) 2000-2015 LOCKON CO.,LTD. All Rights Reserved.
+    
+    http://www.lockon.co.jp/
+    
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+    #}
+{% extends 'default_frame.twig' %}
+
+{% set body_class = 'product_page article' %}
+
+{% block javascript %}
+	<script>
+		// 並び順を変更
+function fnChangeOrderBy(orderby) {
+eccube.setValue('orderby', orderby);
+eccube.setValue('pageno', 1);
+eccube.submitForm();
+}
+
+// 表示件数を変更
+function fnChangeDispNumber(dispNumber) {
+eccube.setValue('disp_number', dispNumber);
+eccube.setValue('pageno', 1);
+eccube.submitForm();
+}
+// 商品表示BOXの高さを揃える
+$(window).load(function () {
+$('.product_item').matchHeight();
+});
+	</script>
+{% endblock %}
+
+{% block main %}
+	<!-- ▼topicpath▼ -->
+	<div id="topicpath" class="row">
+		<div class="article-container article-20200214">
+			<div class="article-block">
+				<div class="article-contents">
+					<img class="article-image" src="{{ app.config.front_urlpath }}/img/article/20200214/article_20200214_1.jpg" alt="ancharme">
+					<img class="article-image" src="{{ app.config.front_urlpath }}/img/article/20200214/article_20200214_2.jpg" alt="ancharme">
+					<a href="#image-5" class="link">
+						<img class="article-image" src="{{ app.config.front_urlpath }}/img/article/20200214/article_20200214_3.jpg" alt="ancharme">
+					</a>
+					<a href="#image-8" class="link">
+						<img class="article-image" src="{{ app.config.front_urlpath }}/img/article/20200214/article_20200214_4.jpg" alt="ancharme">
+					</a>
+					<img id="image-5" class="article-image" src="{{ app.config.front_urlpath }}/img/article/20200214/article_20200214_5.jpg" alt="ancharme">
+					<img class="article-image" src="{{ app.config.front_urlpath }}/img/article/20200214/article_20200214_6.jpg" alt="ancharme">
+				</div>
+				<div class="article-contents is-flex">
+					<a class="link" href="https://ancharme.jp/products/detail/106">
+						<img class="article-image" src="{{ app.config.front_urlpath }}/img/article/20200214/article_20200214_7b.jpg" alt="ancharme">
+					</a>
+					<a class="link" href="https://ancharme.jp/products/detail/264">
+						<img class="article-image" src="{{ app.config.front_urlpath }}/img/article/20200214/article_20200214_7a.jpg" alt="ancharme">
+					</a>
+				</div>
+				<div class="article-contents">
+					<img id="image-8" class="article-image" src="{{ app.config.front_urlpath }}/img/article/20200214/article_20200214_8.jpg" alt="ancharme">
+					<img class="article-image" src="{{ app.config.front_urlpath }}/img/article/20200214/article_20200214_9.jpg" alt="ancharme">
+				</div>
+				<div class="article-contents is-flex">
+					<a class="link" href="https://ancharme.jp/products/detail/106">
+						<img class="article-image" src="{{ app.config.front_urlpath }}/img/article/20200214/article_20200214_10b.jpg" alt="ancharme">
+					</a>
+					<a class="link" href="https://ancharme.jp/products/detail/264">
+						<img class="article-image" src="{{ app.config.front_urlpath }}/img/article/20200214/article_20200214_10a.jpg" alt="ancharme">
+					</a>
+				</div>
+				<div class="article-contents">
+					<a class="link" href="https://ancharme.jp/products/list">
+						<img class="article-image" src="{{ app.config.front_urlpath }}/img/article/20200214/article_20200214_11.jpg" alt="ancharme">
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ▲topicpath▲ -->
+{% endblock %}

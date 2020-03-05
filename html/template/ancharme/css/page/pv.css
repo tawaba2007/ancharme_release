@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+.pv-page #main_bottom {
+    padding-top: 90px;
+}
+
+.pv-page #contents {
+    background-image: url(https://ancharme.jp/html/template/ancharme/img/top/footer.gif);
+}
+
+.pv-page #footer {
+    border-top: none;
+}
