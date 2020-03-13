@@ -3,8 +3,8 @@
 ## ec cube情報
 ### 管理画面URL
 https://ancharme.jp/administrator/
-- ID：ancharme
-- PW：fJp2T9vj
+- ID：developer
+- PW：LJp2AvST
 ---
 ### サーバー情報（エックスサーバー）
 ### URL
