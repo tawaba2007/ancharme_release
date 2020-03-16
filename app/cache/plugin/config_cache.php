@@ -1,4 +1,75 @@
 <?php return array (
+  'AddressAutomaticExtension' => 
+  array (
+    'config' => 
+    array (
+      'name' => '住所自動入力の拡張版',
+      'code' => 'AddressAutomaticExtension',
+      'event' => 'AddressAutomaticExtension',
+      'version' => 1.1999999999999999555910790149937383830547332763671875,
+    ),
+    'event' => 
+    array (
+      'eccube.event.render.admin_customer_new.before' => 
+      array (
+        0 => 
+        array (
+          0 => 'onRenderAdminCustomerNewBefore',
+          1 => 'NORMAL',
+        ),
+        1 => 
+        array (
+          0 => 'onRenderAdminCustomerEditBefore',
+          1 => 'NORMAL',
+        ),
+        2 => 
+        array (
+          0 => 'onRenderAdminOrderEditBefore',
+          1 => 'NORMAL',
+        ),
+      ),
+      'eccube.event.render.admin_order_new.before' => 
+      array (
+        0 => 
+        array (
+          0 => 'onRenderAdminOrderNewBefore',
+          1 => 'NORMAL',
+        ),
+      ),
+      'eccube.event.render.contact.before' => 
+      array (
+        0 => 
+        array (
+          0 => 'onRenderContactBefore',
+          1 => 'NORMAL',
+        ),
+      ),
+      'eccube.event.render.entry.before' => 
+      array (
+        0 => 
+        array (
+          0 => 'onRenderEntryBefore',
+          1 => 'NORMAL',
+        ),
+      ),
+      'eccube.event.render.shopping_shipping_edit.before' => 
+      array (
+        0 => 
+        array (
+          0 => 'onRenderShoppingShippingEditBefore',
+          1 => 'NORMAL',
+        ),
+      ),
+      'eccube.event.render.shopping_nonmember.before' => 
+      array (
+        0 => 
+        array (
+          0 => 'onRenderShoppingNonmemberBefore',
+          1 => 'NORMAL',
+        ),
+      ),
+    ),
+  ),
   'ApgProductClassImage' => 
   array (
     'config' => 
@@ -1077,6 +1148,51 @@ http://www.epsilon.jp/document_dl/index_pdf.html
       ),
     ),
   ),
+  'GoqsmilePlugin' => 
+  array (
+    'config' => 
+    array (
+      'name' => 'GoQSmile',
+      'code' => 'GoqsmilePlugin',
+      'version' => '1.0.1',
+      'event' => 'GoqsmilePluginEvent',
+      'service' => 
+      array (
+        0 => 'GoqsmilePluginServiceProvider',
+      ),
+      'orm.path' => 
+      array (
+        0 => '/Resource/doctrine',
+      ),
+    ),
+    'event' => 
+    array (
+      'eccube.event.front.controller' => 
+      array (
+        0 => 
+        array (
+          0 => 'onFrontController',
+          1 => 'NORMAL',
+        ),
+      ),
+      'eccube.event.front.response' => 
+      array (
+        0 => 
+        array (
+          0 => 'onFrontResponse',
+          1 => 'NORMAL',
+        ),
+      ),
+      'eccube.event.admin.controller' => 
+      array (
+        0 => 
+        array (
+          0 => 'onAdminController',
+          1 => 'NORMAL',
+        ),
+      ),
+    ),
+  ),
   'GtmLite' => 
   array (
     'config' => 
@@ -1244,6 +1360,96 @@ http://www.epsilon.jp/document_dl/index_pdf.html
         0 => 
         array (
           0 => 'shoppingCompleteGtmLite',
+          1 => 'NORMAL',
+        ),
+      ),
+    ),
+  ),
+  'LineLoginIntegration' => 
+  array (
+    'config' => 
+    array (
+      'name' => 'LineLoginIntegration',
+      'event' => 'LineLoginIntegrationEvent',
+      'code' => 'LineLoginIntegration',
+      'version' => '1.1.0',
+      'service' => 
+      array (
+        0 => 'LineLoginIntegrationServiceProvider',
+      ),
+      'orm.path' => 
+      array (
+        0 => '/Resource/doctrine',
+      ),
+    ),
+    'event' => 
+    array (
+      'Mypage/login.twig' => 
+      array (
+        0 => 
+        array (
+          0 => 'onRenderLineLoginButton',
+          1 => 'NORMAL',
+        ),
+      ),
+      'Entry/index.twig' => 
+      array (
+        0 => 
+        array (
+          0 => 'onRenderLineEntryButton',
+          1 => 'NORMAL',
+        ),
+        1 => 
+        array (
+          0 => 'onRenderEntryIndex',
+          1 => 'NORMAL',
+        ),
+      ),
+      'Entry/confirm.twig' => 
+      array (
+        0 => 
+        array (
+          0 => 'onRenderEntryConfirm',
+          1 => 'NORMAL',
+        ),
+      ),
+      'Mypage/change.twig' => 
+      array (
+        0 => 
+        array (
+          0 => 'onRenderMypageChange',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.mypage.change.index.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onCompleteMypageChange',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.entry.index.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onCompleteEntry',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.mypage.withdraw.index.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onCompleteMypageWithdraw',
+          1 => 'NORMAL',
+        ),
+      ),
+      'admin.customer.delete.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onCompleteCustomerDelete',
           1 => 'NORMAL',
         ),
       ),
@@ -1633,6 +1839,235 @@ http://www.epsilon.jp/document_dl/index_pdf.html
       ),
     ),
   ),
+  'Point' => 
+  array (
+    'config' => 
+    array (
+      'name' => 'Pointプラグイン',
+      'code' => 'Point',
+      'version' => '1.0.0',
+      'event' => 'PointEvent',
+      'service' => 
+      array (
+        0 => 'PointServiceProvider',
+      ),
+      'orm.path' => 
+      array (
+        0 => '/Resource/doctrine',
+      ),
+    ),
+    'event' => 
+    array (
+      'admin.product.edit.initialize' => 
+      array (
+        0 => 
+        array (
+          0 => 'onAdminProductEditInitialize',
+          1 => 'NORMAL',
+        ),
+      ),
+      'admin.product.edit.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onAdminProductEditComplete',
+          1 => 'NORMAL',
+        ),
+      ),
+      'admin.customer.edit.index.initialize' => 
+      array (
+        0 => 
+        array (
+          0 => 'onAdminCustomerEditIndexInitialize',
+          1 => 'NORMAL',
+        ),
+      ),
+      'admin.customer.edit.index.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onAdminCustomerEditIndexComplete',
+          1 => 'NORMAL',
+        ),
+      ),
+      'admin.order.edit.index.initialize' => 
+      array (
+        0 => 
+        array (
+          0 => 'onAdminOrderEditIndexInitialize',
+          1 => 'NORMAL',
+        ),
+      ),
+      'admin.order.edit.index.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onAdminOrderEditIndexComplete',
+          1 => 'NORMAL',
+        ),
+      ),
+      'admin.order.delete.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onAdminOrderDeleteComplete',
+          1 => 'NORMAL',
+        ),
+      ),
+      'admin.order.mail.index.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onAdminOrderMailIndexComplete',
+          1 => 'NORMAL',
+        ),
+      ),
+      'admin.order.mail.mail.all.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onAdminOrderMailIndexComplete',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.shopping.confirm.processing' => 
+      array (
+        0 => 
+        array (
+          0 => 'onFrontShoppingConfirmProcessing',
+          1 => 'NORMAL',
+        ),
+      ),
+      'service.shopping.notify.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onServiceShoppingNotifyComplete',
+          1 => 'NORMAL',
+        ),
+      ),
+      'Shopping/complete.twig' => 
+      array (
+        0 => 
+        array (
+          0 => 'onRenderShoppingComplete',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.shopping.delivery.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onFrontChangeTotal',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.shopping.payment.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onFrontChangeTotal',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.shopping.shipping.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onFrontChangeTotal',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.shopping.shipping.edit.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onFrontChangeTotal',
+          1 => 'NORMAL',
+        ),
+      ),
+      'Admin/Order/edit.twig' => 
+      array (
+        0 => 
+        array (
+          0 => 'onRenderAdminOrderEdit',
+          1 => 'NORMAL',
+        ),
+      ),
+      'Admin/Order/mail_confirm.twig' => 
+      array (
+        0 => 
+        array (
+          0 => 'onRenderAdminOrderMailConfirm',
+          1 => 'NORMAL',
+        ),
+      ),
+      'Admin/Order/mail_all_confirm.twig' => 
+      array (
+        0 => 
+        array (
+          0 => 'onRenderAdminOrderMailConfirm',
+          1 => 'NORMAL',
+        ),
+      ),
+      'Mypage/index.twig' => 
+      array (
+        0 => 
+        array (
+          0 => 'onRenderMyPageIndex',
+          1 => 'NORMAL',
+        ),
+      ),
+      'Shopping/index.twig' => 
+      array (
+        0 => 
+        array (
+          0 => 'onRenderShoppingIndex',
+          1 => 'NORMAL',
+        ),
+      ),
+      'Product/detail.twig' => 
+      array (
+        0 => 
+        array (
+          0 => 'onRenderProductDetail',
+          1 => 'NORMAL',
+        ),
+      ),
+      'Cart/index.twig' => 
+      array (
+        0 => 
+        array (
+          0 => 'onRenderCart',
+          1 => 'NORMAL',
+        ),
+      ),
+      'Mypage/history.twig' => 
+      array (
+        0 => 
+        array (
+          0 => 'onRenderHistory',
+          1 => 'NORMAL',
+        ),
+      ),
+      'mail.order' => 
+      array (
+        0 => 
+        array (
+          0 => 'onMailOrderComplete',
+          1 => 'NORMAL',
+        ),
+      ),
+      'mail.admin.order' => 
+      array (
+        0 => 
+        array (
+          0 => 'onMailOrderComplete',
+          1 => 'NORMAL',
+        ),
+      ),
+    ),
+  ),
   'ProductReview' => 
   array (
     'config' => 
@@ -1826,6 +2261,185 @@ http://www.epsilon.jp/document_dl/index_pdf.html
         0 => 
         array (
           0 => 'onRenderProductDetail',
+          1 => 'NORMAL',
+        ),
+      ),
+    ),
+  ),
+  'SimpleCoupon' => 
+  array (
+    'config' => 
+    array (
+      'name' => 'シンプルクーポンプラグイン',
+      'event' => 'SimpleCoupon',
+      'code' => 'SimpleCoupon',
+      'version' => '1.2.6',
+      'service' => 
+      array (
+        0 => 'SimpleCouponServiceProvider',
+      ),
+      'orm.path' => 
+      array (
+        0 => '/Resource/doctrine',
+      ),
+      'const' => 
+      array (
+        'shopping_index_insert_position' => NULL,
+        'mypage_history_insert_position' => NULL,
+        'admin_order_edit_insert_position' => NULL,
+      ),
+    ),
+    'event' => 
+    array (
+      'eccube.event.route.shopping.response' => 
+      array (
+        0 => 
+        array (
+          0 => 'onEccubeEventRouteShoppingResponse',
+          1 => 'NORMAL',
+        ),
+      ),
+      'eccube.event.route.shopping_shipping_change.response' => 
+      array (
+        0 => 
+        array (
+          0 => 'onEccubeEventRouteShoppingResponse',
+          1 => 'NORMAL',
+        ),
+      ),
+      'eccube.event.route.shopping_confirm.controller' => 
+      array (
+        0 => 
+        array (
+          0 => 'onEccubeEventRouteShoppingConfirmController',
+          1 => 'NORMAL',
+        ),
+      ),
+      'eccube.event.route.admin_order_edit.response' => 
+      array (
+        0 => 
+        array (
+          0 => 'onEccubeEventRouteAdminOrderEditResponse',
+          1 => 'NORMAL',
+        ),
+      ),
+      'eccube.event.route.mypage_history.response' => 
+      array (
+        0 => 
+        array (
+          0 => 'onEccubeEventRouteMypageHistoryResponse',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.shopping.index.initialize' => 
+      array (
+        0 => 
+        array (
+          0 => 'onFrontShoppingIndexInitialize',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.shopping.confirm.initialize' => 
+      array (
+        0 => 
+        array (
+          0 => 'onFrontShoppingConfirmInitialize',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.shopping.confirm.processing' => 
+      array (
+        0 => 
+        array (
+          0 => 'onFrontShoppingConfirmProcessing',
+          1 => 'NORMAL',
+        ),
+      ),
+      'service.shopping.notify.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onServiceShoppingNotifyComplete',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.shopping.shipping.change.initialize' => 
+      array (
+        0 => 
+        array (
+          0 => 'onFrontShoppingShippingChangeInitialize',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.shopping.shipping.multiple.change.initialize' => 
+      array (
+        0 => 
+        array (
+          0 => 'onFrontShoppingShippingChangeInitialize',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.shopping.delivery.initialize' => 
+      array (
+        0 => 
+        array (
+          0 => 'onFrontShoppingShippingChangeInitialize',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.shopping.shipping.edit.change.initialize' => 
+      array (
+        0 => 
+        array (
+          0 => 'onFrontShoppingShippingChangeInitialize',
+          1 => 'NORMAL',
+        ),
+      ),
+      'admin.setting.shop.delivery.edit.initialize' => 
+      array (
+        0 => 
+        array (
+          0 => 'onAdminSettingShopDeliveryEditInitialize',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.shopping.delivery.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onFrontShoppingDeliveryComplete',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.shopping.payment.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onFrontShoppingPaymentComplete',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.shopping.shipping.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onFrontShoppingShippingComplete',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.shopping.shipping.edit.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onfrontShoppingShippingEditComplete',
+          1 => 'NORMAL',
+        ),
+      ),
+      'front.shopping.shipping.multiple.complete' => 
+      array (
+        0 => 
+        array (
+          0 => 'onFrontShoppingMultipleComplete',
           1 => 'NORMAL',
         ),
       ),
