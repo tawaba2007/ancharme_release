@@ -26,15 +26,15 @@ class __TwigTemplate_da85971d3176e804b8bbc9d43cc77abb00a05272ff16ac4cd9a53467659
                         <img src=\"";
         // line 8
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["app"] ?? null), "config", array()), "front_urlpath", array()), "html", null, true);
-        echo "/img/banner/line.png\" class=\"list-image\">
+        echo "/img/banner/line02.png\" class=\"list-image\">
                     </a>
                 </li>
                 <li class=\"list-item\">
-                    <a class=\"link\" href=\"#\">
+                    <a class=\"link\" href=\"https://ancharme.jp/articles03_06\">
                         <img src=\"";
         // line 13
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["app"] ?? null), "config", array()), "front_urlpath", array()), "html", null, true);
-        echo "/img/banner/top_banner.jpg\" class=\"list-image\">
+        echo "/img/banner/blog03_06.png\" class=\"list-image\">
                     </a>
                 </li>
             </ul>

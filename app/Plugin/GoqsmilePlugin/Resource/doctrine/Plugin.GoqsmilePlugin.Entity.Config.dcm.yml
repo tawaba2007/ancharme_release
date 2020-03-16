@@ -1,0 +1,16 @@
+Plugin\GoqsmilePlugin\Entity\Config:
+    type: entity
+    table: plg_goqsmile_plugin_config
+    repositoryClass: Plugin\GoqsmilePlugin\Repository\ConfigRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        app_id:
+            type: text
+            nullable: true

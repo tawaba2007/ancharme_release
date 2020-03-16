@@ -1,0 +1,8 @@
+name: GoQSmile
+code: GoqsmilePlugin
+version: 1.0.1
+event: GoqsmilePluginEvent
+service:
+    - GoqsmilePluginServiceProvider
+orm.path:
+    - /Resource/doctrine

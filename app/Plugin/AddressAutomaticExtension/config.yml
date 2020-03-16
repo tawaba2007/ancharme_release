@@ -1,0 +1,4 @@
+name:  住所自動入力の拡張版
+code:  AddressAutomaticExtension
+event: AddressAutomaticExtension
+version: 1.2

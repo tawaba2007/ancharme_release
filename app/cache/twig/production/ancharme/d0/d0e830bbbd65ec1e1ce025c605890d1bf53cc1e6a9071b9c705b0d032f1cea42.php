@@ -53,12 +53,12 @@ class __TwigTemplate_1a07e476b63f392ec433cc18454f09ed2a94e2c34a73f8e464fdf7f27c0
 \t\t\t\t\t\t</a>
 \t\t\t\t\t</li>
 \t\t\t\t\t<li class=\"list-item\" data-pagename='article'>
-\t\t\t\t\t\t<a class=\"link\" href=\"#cordinate\">
+\t\t\t\t\t\t<a class=\"link\" href=\"https://ancharme.jp/article\">
 \t\t\t\t\t\t\t<figure><img src=\"";
         // line 27
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["app"] ?? null), "config", array()), "front_urlpath", array()), "html", null, true);
         echo "/img/icon/information-white.svg\" class=\"icon\"></figure>
-\t\t\t\t\t\t\t<figcaption>記事</figcaption>
+\t\t\t\t\t\t\t<figcaption>記事ページ</figcaption>
 \t\t\t\t\t\t</a>
 \t\t\t\t\t</li>
 \t\t\t\t\t<li class=\"list-item\" data-pagename='influencer'>

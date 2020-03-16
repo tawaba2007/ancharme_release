@@ -1,0 +1,19 @@
+#admin
+eccube.event.render.admin_customer_new.before:
+  - [onRenderAdminCustomerNewBefore, NORMAL]
+#eccube.event.render.admin_customer_edit.before:
+  - [onRenderAdminCustomerEditBefore, NORMAL]
+#eccube.event.render.admin_order_edit.before:
+  - [onRenderAdminOrderEditBefore, NORMAL]
+eccube.event.render.admin_order_new.before:
+  - [onRenderAdminOrderNewBefore, NORMAL]
+
+#front
+eccube.event.render.contact.before:
+  - [onRenderContactBefore, NORMAL]
+eccube.event.render.entry.before:
+  - [onRenderEntryBefore, NORMAL]
+eccube.event.render.shopping_shipping_edit.before:
+  - [onRenderShoppingShippingEditBefore, NORMAL]
+eccube.event.render.shopping_nonmember.before:
+  - [onRenderShoppingNonmemberBefore, NORMAL]
