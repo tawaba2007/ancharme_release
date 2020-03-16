@@ -1,0 +1,37 @@
+<!-- tmp_lpitem01_a -->
+<div id="tmp_lpitem01_a" class="template blockLayout original">
+    <div class="contaner">
+        <div class="title_block">
+            <h2 class="title">ITEM LIST</h2>
+        </div>
+        <div class="itemList_block">
+            <div class="itemList_list">
+                {% for Product in Products %}
+                <div class="item_block">
+                    <div class="item_wrapp">
+                        <a class="item_link" class="itemList_contents_link"
+                            href="{{ url('product_detail', {'id': Product.id})
+                            }}">
+                            <img class="item_image" src="{{
+                                app.config.image_save_urlpath }}/{{
+                                Product.main_list_image|no_image_product }}">
+                        </a>
+                    </div>
+                    <div class="detail_block">
+                        <h3 class="title">
+                            <a class="text_link" href="{{ url('product_detail',
+                                {'id': Product.id}) }}">
+                                {{ Product.name }}
+                            </a>
+                        </h3>
+                        <p class="price_text">{{
+                            Product.getPrice02IncTaxMin|price
+                            }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /pickUp -->

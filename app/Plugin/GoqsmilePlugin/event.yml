@@ -1,0 +1,6 @@
+eccube.event.front.controller:
+    - [onFrontController, NORMAL]
+eccube.event.front.response:
+    - [onFrontResponse, NORMAL]
+eccube.event.admin.controller:
+    - [onAdminController, NORMAL]

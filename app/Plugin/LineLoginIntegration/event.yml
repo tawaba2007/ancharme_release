@@ -1,0 +1,17 @@
+Mypage/login.twig:
+ - [onRenderLineLoginButton, NORMAL]
+Entry/index.twig:
+ - [onRenderLineEntryButton, NORMAL]
+ - [onRenderEntryIndex, NORMAL]
+Entry/confirm.twig:
+ - [onRenderEntryConfirm, NORMAL]
+Mypage/change.twig:
+ - [onRenderMypageChange, NORMAL]
+front.mypage.change.index.complete:
+ - [onCompleteMypageChange, NORMAL]
+front.entry.index.complete:
+ - [onCompleteEntry, NORMAL]
+front.mypage.withdraw.index.complete:
+ - [onCompleteMypageWithdraw, NORMAL]
+admin.customer.delete.complete:
+ - [onCompleteCustomerDelete, NORMAL]
